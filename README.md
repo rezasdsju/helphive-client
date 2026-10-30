@@ -11,3 +11,4 @@ HelpHive is a people-powered social development platform that connects individua
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
+- React Icons
