@@ -30,13 +30,13 @@ const AuthPopover = () => {
             <PopoverContent
                 align="end"
 
-                className="w-64 p-4 ring-gray-200 bg-white"
+                className="w-64 p-4 bg-popover"
             >
                 <PopoverHeader className="mb-4">
-                    <PopoverTitle className="text-lg font-bold text-gray-900">
+                    <PopoverTitle className="text-lg font-bold text-foreground">
                         Welcome to HelpHive!
                     </PopoverTitle>
-                    <PopoverDescription className="text-sm text-gray-500">
+                    <PopoverDescription className="text-sm text-muted-foreground">
                         Join our community and make a difference together.
                     </PopoverDescription>
                 </PopoverHeader>
@@ -53,7 +53,7 @@ const AuthPopover = () => {
 
                     <Link
                         href="/signup"
-                        className="flex items-center justify-center gap-2 rounded-md border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+                        className="flex items-center justify-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition hover:bg-accent"
                         onClick={() => setOpen(false)}
                     >
                         <LuUserPlus size={17} />
