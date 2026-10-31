@@ -1,3 +1,4 @@
+'use client'
 import {
     Popover,
     PopoverContent,
@@ -8,10 +9,12 @@ import {
 } from "@/components/ui/popover";
 import { LuUserRound, LuLogIn, LuUserPlus } from "react-icons/lu";
 import Link from "next/link";
+import { useState } from "react";
 
 const AuthPopover = () => {
+    const [open, setOpen] = useState(false)
     return (
-        <Popover>
+        <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger
                 render={
                     <button
@@ -40,16 +43,18 @@ const AuthPopover = () => {
 
                 <div className="flex flex-col gap-2">
                     <Link
-                        href="/login"
+                        href="/signin"
                         className="flex items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                        onClick={() => setOpen(false)}
                     >
                         <LuLogIn size={17} />
-                        Login
+                        Sign In
                     </Link>
 
                     <Link
                         href="/signup"
                         className="flex items-center justify-center gap-2 rounded-md border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+                        onClick={() => setOpen(false)}
                     >
                         <LuUserPlus size={17} />
                         Sign Up
