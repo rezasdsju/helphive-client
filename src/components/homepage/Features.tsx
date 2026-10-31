@@ -44,7 +44,7 @@ const Features = () => {
                 </h2>
                 <p>Everything you need to make impact</p>
             </div>
-            <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4 px-2">
+            <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4 px-1 min-[350px]:px-2">
                 {features.map((feature) => (
                     <div
                         key={feature.title}
@@ -53,10 +53,10 @@ const Features = () => {
                         <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-amber-100 text-2xl text-amber-600 transition group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-500/15 dark:text-amber-400 dark:group-hover:bg-amber-500 dark:group-hover:text-white">
                             {feature.icon}
                         </div>
-                        <h3 className="mb-2 text-lg font-semibold text-card-foreground">
+                        <h3 className="mb-2 text-sm min-[350px]:text-lg font-semibold text-card-foreground">
                             {feature.title}
                         </h3>
-                        <p className="text-sm leading-relaxed text-muted-foreground">
+                        <p className="text-xs min-[350px]:text-sm leading-relaxed text-muted-foreground">
                             {feature.subTitle}
                         </p>
                     </div>
