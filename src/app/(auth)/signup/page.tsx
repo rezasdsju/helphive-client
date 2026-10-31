@@ -39,7 +39,7 @@ const SignUpPage = () => {
         }
         const validPassword = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(userData.password);
         // console.log(validPassword)
-        if (!validPassword){
+        if (!validPassword) {
             toast.add({
                 type: "error",
                 description: "Password Invalid. Must have an uppercase letter, a lowercase letter",
@@ -48,29 +48,45 @@ const SignUpPage = () => {
             return
         }
 
-        const {data, error} = await authClient.signUp.email({
+        const { data, error } = await authClient.signUp.email({
             name: userData.name,
             email: userData.email,
             image: userData.image || undefined,
             password: userData.password
         })
-        if (error){
+        if (error) {
             toast.add({
                 type: "error",
                 description: `${error.message}`,
                 priority: "high",
             });
             console.log(error)
-            return;            
+            return;
         }
-        if (data){
+        if (data) {
             toast.add({
                 type: "success",
                 description: "Your account has been created successfully!",
                 priority: "high",
-            });    
-            router.replace('/signin')  
+            });
+            router.replace('/signin')
 
+        }
+    }
+
+
+
+    const handleGoogleSignIn = async () => {
+        const {error} = await authClient.signIn.social({
+            provider: 'google'
+        })
+        if (error) {
+            toast.add({
+                type: "error",
+                description: "An error occurred during sign in.",
+                priority: 'high'
+            })
+            return
         }
     }
     return (
@@ -105,7 +121,7 @@ const SignUpPage = () => {
 
                         <Field>
                             <FieldLabel htmlFor="image">Image URL</FieldLabel>
-                            <Input name="image" id="image" type="url"  placeholder="https://your-image.io" />
+                            <Input name="image" id="image" type="url" placeholder="https://your-image.io" />
                         </Field>
 
                         <Field>
@@ -125,7 +141,7 @@ const SignUpPage = () => {
                         <FieldGroup>
                             <Field>
                                 <Button type="submit">Create Account</Button>
-                                <Button variant="outline" type="button">
+                                <Button onClick={handleGoogleSignIn} variant="outline" type="button">
                                     Sign up with Google
                                 </Button>
                                 <FieldDescription className="px-6 text-center">

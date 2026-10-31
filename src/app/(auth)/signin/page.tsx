@@ -31,24 +31,37 @@ const SignInPage = () => {
         const userData = Object.fromEntries(formData.entries()) as { email: string, password: string }
         // console.log(userData)
 
-        const {data, error} = await authClient.signIn.email({
+        const { data, error } = await authClient.signIn.email({
             email: userData.email,
             password: userData.password
         })
-        if (error){
+        if (error) {
             toast.add({
                 type: "error",
                 description: "An error occurred during sign in.",
                 priority: 'high'
             })
         }
-        if (data){
+        if (data) {
             toast.add({
                 type: "success",
                 description: "You have successfully signed in!",
                 priority: 'high'
-            })        
-            router.replace('/')    
+            })
+            router.replace('/')
+        }
+    }
+    const handleGoogleSignIn = async () => {
+        const { error } = await authClient.signIn.social({
+            provider: 'google'
+        })
+        if (error) {
+            toast.add({
+                type: "error",
+                description: "An error occurred during sign in.",
+                priority: 'high'
+            })
+            return
         }
     }
     return (
@@ -87,7 +100,7 @@ const SignInPage = () => {
                             </Field>
                             <Field>
                                 <Button type="submit">Login</Button>
-                                <Button variant="outline" type="button">
+                                <Button onClick={handleGoogleSignIn} variant="outline" type="button">
                                     Login with Google
                                 </Button>
                                 <FieldDescription className="text-center">
