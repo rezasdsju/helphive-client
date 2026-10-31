@@ -6,15 +6,16 @@ HelpHive is a people-powered social development platform that connects individua
 
 ## Features
 
-- User registration with email and password
+- Email and password registration and sign in with Better Auth
+- Profile menu with sign out
+- Light and dark theme toggle that remembers your choice
+- Responsive navbar for mobile and desktop
+
 
 ## Technologies
 
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- React Icons
-- MongoDB
-- Better Auth
+- **Framework:** Next.js, React, TypeScript
+- **Styling:** Tailwind CSS, shadcn/ui, React Icons
+- **Authentication:** Better Auth
+- **Database:** MongoDB
+- **Theming:** next-themes
