@@ -29,7 +29,7 @@ const Navbar = () => {
                         />
 
                         <Image
-                            src="/nav-log-for-dark-mode.png"
+                            src="/nav-logo-for-dark-mode-2.png"
                             alt="HelpHive Logo"
                             width={150}
                             height={60}
