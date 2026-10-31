@@ -60,14 +60,14 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger
                 render={
-                    <button className="cursor-pointer">
-                        <Avatar className="size-10">
+                    <button className="size-10 shrink-0 cursor-pointer rounded-full flex items-center justify-center">
+                        <Avatar className="size-10 overflow-hidden border border-gray-100 dark:border-gray-700">
                             {
                                 user.image &&
                                 <AvatarImage
                                     src={user.image}
                                     alt={user.name.charAt(0)}
-                                    className="grayscale"
+                                    className="size-full object-cover"
                                 />
                             }
                             <AvatarFallback className="bg-amber-100 font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-400">{user.name.charAt(0).toLocaleUpperCase()}</AvatarFallback>
