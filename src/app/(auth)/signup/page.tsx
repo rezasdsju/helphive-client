@@ -104,7 +104,7 @@ const SignUpPage = () => {
 
                         <Field>
                             <FieldLabel htmlFor="image">Image URL</FieldLabel>
-                            <Input name="image" id="image" type="url" required placeholder="https://your-image.io" />
+                            <Input name="image" id="image" type="url"  placeholder="https://your-image.io" />
                         </Field>
 
                         <Field>
