@@ -10,8 +10,10 @@ HelpHive is a people-powered social development platform that connects individua
 - Google sign in
 - Profile menu with sign out
 - Light and dark theme toggle that remembers your choice
-- Responsive navbar for mobile and desktop
-
+- Responsive navbar and footer for mobile and desktop
+- Homepage with banner, features and upcoming events carousel
+- Gallery carousel showcasing community service moments
+- Newsletter subscription section (design only)
 
 ## Technologies
 
