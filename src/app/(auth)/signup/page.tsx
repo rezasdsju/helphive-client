@@ -140,8 +140,8 @@ const SignUpPage = () => {
                         </Field>
                         <FieldGroup>
                             <Field>
-                                <Button type="submit">Create Account</Button>
-                                <Button onClick={handleGoogleSignIn} variant="outline" type="button">
+                                <Button type="submit" className={`cursor-pointer`}>Create Account</Button>
+                                <Button onClick={handleGoogleSignIn} variant="outline" type="button" className={`cursor-pointer`}>
                                     Sign up with Google
                                 </Button>
                                 <FieldDescription className="px-6 text-center">

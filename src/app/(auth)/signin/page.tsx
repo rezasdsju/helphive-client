@@ -68,7 +68,7 @@ const SignInPage = () => {
         <div className={cn("flex flex-col gap-6")}>
             <Card>
                 <CardHeader>
-                    <CardTitle>Login to your account</CardTitle>
+                    <CardTitle>Sign In to your account</CardTitle>
                     <CardDescription>
                         Enter your email below to login to your account
                     </CardDescription>
@@ -99,9 +99,9 @@ const SignInPage = () => {
                                 <Input name="password" id="password" type="password" required />
                             </Field>
                             <Field>
-                                <Button type="submit">Login</Button>
-                                <Button onClick={handleGoogleSignIn} variant="outline" type="button">
-                                    Login with Google
+                                <Button type="submit" className={`cursor-pointer`}>Sign In</Button>
+                                <Button onClick={handleGoogleSignIn} variant="outline" type="button" className={`cursor-pointer`}>
+                                    Sign In with Google
                                 </Button>
                                 <FieldDescription className="text-center">
                                     Don&apos;t have an account? <Link href="/signup">Sign up</Link>
