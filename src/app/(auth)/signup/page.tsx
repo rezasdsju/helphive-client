@@ -27,7 +27,7 @@ const SignUpPage = () => {
     const handleSignUp = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        const userData = Object.fromEntries(formData.entries()) as { name: string, email: string, image: string, password: string, password1: string }
+        const userData = Object.fromEntries(formData.entries()) as { name: string, email: string, image?: string, password: string, password1: string }
         // console.log(userData)
         if (userData.password !== userData.password1) {
             toast.add({
@@ -51,15 +51,16 @@ const SignUpPage = () => {
         const {data, error} = await authClient.signUp.email({
             name: userData.name,
             email: userData.email,
-            image: userData.image,
+            image: userData.image || undefined,
             password: userData.password
         })
         if (error){
             toast.add({
                 type: "error",
-                description: "An error occurred during signup. Please try again",
+                description: `${error.message}`,
                 priority: "high",
             });
+            console.log(error)
             return;            
         }
         if (data){
