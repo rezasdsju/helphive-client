@@ -159,8 +159,8 @@ const UpcomingEvents = () => {
                     ))}
                    
                 </CarouselContent>
-                <CarouselPrevious className={`left-1`}/>
-                <CarouselNext className={`right-1`}/>
+                <CarouselPrevious className={`left-1 cursor-pointer`}/>
+                <CarouselNext className={`right-1 cursor-pointer`}/>
             </Carousel>
         </div>
     );
