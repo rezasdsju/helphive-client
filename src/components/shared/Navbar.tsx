@@ -8,9 +8,9 @@ const Navbar = () => {
     return (
         <nav className="border-b border-gray-100 shadow py-2 ">
             <div className="grid grid-cols-3 items-center  w-full max-w-6xl  mx-auto px-2">
-                <div>
+                <Link href={`/`}>
                     <Image src={'/nav-logo-3.png'} alt="Nav Logo" width={150} height={60} className="h-11 w-auto object-contain" loading="eager"></Image>
-                </div>
+                </Link>
                 <Link
                     href=""
                     className="group relative inline-flex items-center justify-center gap-2 text-sm font-semibold text-gray-700 transition-colors duration-200 hover:text-blue-600"
