@@ -80,13 +80,13 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
             <PopoverContent
                 align="end"
 
-                className="w-64 p-4 ring-gray-200 bg-white"
+                className="w-64 p-4 ring-foreground/10 bg-popover"
             >
                 <PopoverHeader className="mb-3 border-b border-border pb-3">
-                    <PopoverTitle className="text-base font-bold text-gray-900">
+                    <PopoverTitle className="text-base font-bold text-foreground">
                         Hello, {user.name}!
                     </PopoverTitle>
-                    <PopoverDescription className="truncate text-xs text-gray-500">
+                    <PopoverDescription className="truncate text-xs text-muted-foreground">
                         {user.email}
                     </PopoverDescription>
                 </PopoverHeader>
@@ -97,7 +97,7 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
                             key={href}
                             href={href}
                             onClick={() => setOpen(false)}
-                            className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-amber-50 hover:text-amber-700"
+                            className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-foreground transition hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-500/10 dark:hover:text-amber-400"
                         >
                             <Icon size={17} />
                             {label}
@@ -109,7 +109,7 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
                     <button
                         type="button"
                         onClick={handleSignOut}
-                        className="flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50"
+                        className="flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 transition hover:bg-red-50 dark:hover:bg-red-500/10"
                     >
                         <LuLogOut size={17} />
                         Sign Out
