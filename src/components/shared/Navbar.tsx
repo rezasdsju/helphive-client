@@ -9,7 +9,7 @@ const Navbar = () => {
         <nav className="border-b border-gray-100 shadow py-2 ">
             <div className="grid grid-cols-3 items-center  w-full max-w-6xl  mx-auto px-2">
                 <div>
-                    <Image src={'/nav-logo-3.png'} alt="Nav Logo" width={150} height={60} className="h-11 w-auto object-contain"></Image>
+                    <Image src={'/nav-logo-3.png'} alt="Nav Logo" width={150} height={60} className="h-11 w-auto object-contain" loading="eager"></Image>
                 </div>
                 <Link
                     href=""
