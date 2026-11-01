@@ -1,3 +1,8 @@
+export interface IParticipant {
+    id: string;
+    name: string;
+    email: string;
+}
 export interface IEvent {
     _id: string;
     title: string;
@@ -7,7 +12,7 @@ export interface IEvent {
     location: string;
     date: string;
     maxParticipants: number;
-    participants: string[];
+    participants: IParticipant[];
     createdAt: string;
     createdBy: {
         id: string;
