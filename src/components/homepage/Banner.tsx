@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 const Banner = () => {
     return (
         <div className="relative min-h-100 sm:min-h-125 lg:min-h-150 w-full overflow-hidden">
@@ -46,9 +46,11 @@ const Banner = () => {
                     <button className="bg-amber-400 hover:bg-amber-300 text-green-950 rounded-2xl px-4 py-2 cursor-pointer font-bold shadow-lg transition-colors">
                         Explore Upcoming Events
                     </button>
-                    <button className="border border-white/70 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm rounded-2xl px-4 py-2 cursor-pointer font-bold shadow-lg transition-colors">
-                        Create Events
-                    </button>
+                    <Link href={`/create-event`}>
+                        <button className="border border-white/70 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm rounded-2xl px-4 py-2 cursor-pointer font-bold shadow-lg transition-colors">
+                            Create Events
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
