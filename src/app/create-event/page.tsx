@@ -61,7 +61,7 @@ const CreateEventPage = () => {
 
     const newEventData = {
       ...eventData,
-      createdBy: { id: user?.id, name: user?.name, email: user?.email },
+      // createdBy: { id: user?.id, name: user?.name, email: user?.email },
       maxParticipants: Number(eventData.maxParticipants),
       participants: [],
       createdAt: new Date().toISOString()
@@ -83,7 +83,7 @@ const CreateEventPage = () => {
     }
 
     const jwtToken = data?.token
-    console.log(jwtToken)
+    // console.log(jwtToken)
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
       method: "POST",
