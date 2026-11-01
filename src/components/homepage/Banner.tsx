@@ -43,9 +43,11 @@ const Banner = () => {
 
 
                 <div className="flex items-center gap-2">
-                    <button className="bg-amber-400 hover:bg-amber-300 text-green-950 rounded-2xl px-4 py-2 cursor-pointer font-bold shadow-lg transition-colors">
-                        Explore Upcoming Events
-                    </button>
+                    <Link href={`/upcoming-events`}>
+                        <button className="bg-amber-400 hover:bg-amber-300 text-green-950 rounded-2xl px-4 py-2 cursor-pointer font-bold shadow-lg transition-colors">
+                            Explore Upcoming Events
+                        </button>
+                    </Link>
                     <Link href={`/create-event`}>
                         <button className="border border-white/70 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm rounded-2xl px-4 py-2 cursor-pointer font-bold shadow-lg transition-colors">
                             Create Events
