@@ -12,7 +12,7 @@ const UpcomingEventCard = ({ event }: { event: IEvent }) => {
     });
     return (
         <div className="group h-full overflow-hidden rounded-md min-[360px]:rounded-xl sm:rounded-2xl border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-400 hover:shadow-lg">
-            <Link href="#" className="flex h-full flex-col">
+            <div className="flex h-full flex-col">
                 <div className="relative aspect-16/10 overflow-hidden">
                     <Image
                         src={event.image}
@@ -50,11 +50,11 @@ const UpcomingEventCard = ({ event }: { event: IEvent }) => {
                             <span className="truncate">By {event.createdBy.name}</span>
                         </div>
                     </div>
-                    <div >
+                    <Link href={`/upcoming-events/${event._id}`}>
                         <button className="w-full mx-auto rounded-md min-[380px]:rounded-xl bg-amber-300 text-gray-800 font-bold text-sm sm:text-base py-1 cursor-pointer">View Event</button>
-                    </div>
+                    </Link>
                 </div>
-            </Link>
+            </div>
         </div>
     );
 };
