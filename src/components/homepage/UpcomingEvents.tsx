@@ -1,5 +1,5 @@
 
-import UpcomingEventCard from "./UpcomingEventCard";
+import UpcomingEventCard from "../shared/upcoming-events/UpcomingEventCard";
 import { Card, CardContent } from "@/components/ui/card"
 import {
     Carousel,
