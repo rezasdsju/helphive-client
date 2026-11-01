@@ -39,7 +39,7 @@ const Navbar = () => {
                     </>
                 </Link>
                 <Link
-                    href=""
+                    href="/upcoming-events"
                     className="group relative inline-flex items-center justify-center gap-2 text-sm font-semibold text-foreground transition-colors duration-200 hover:text-blue-600"
                 >
                     <span className="flex size-8 items-center justify-center rounded-full bg-amber-50 text-amber-600 transition group-hover:bg-amber-100">
