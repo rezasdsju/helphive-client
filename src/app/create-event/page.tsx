@@ -23,6 +23,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
 import { authClient } from "@/lib/auth-client"
+import getTokenFromClient from "@/lib/getTokenFromClient"
 import React, { useEffect, useState } from "react"
 
 
@@ -75,19 +76,21 @@ const CreateEventPage = () => {
 
 
 
-    const { data, error } = await authClient.token()
-    if (error) {
-      console.log(error)
-      toast.add({
-        type: "error",
-        description: "An error occurred to get token.",
-        priority: 'high'
-      })
-      return
-    }
+    // const { data, error } = await authClient.token()
+    // if (error) {
+    //   console.log(error)
+    //   toast.add({
+    //     type: "error",
+    //     description: "An error occurred to get token.",
+    //     priority: 'high'
+    //   })
+    //   return
+    // }
 
-    const jwtToken = data?.token
+    // const jwtToken = data?.token
     // console.log(jwtToken)
+
+    const jwtToken = getTokenFromClient()
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
       method: "POST",
