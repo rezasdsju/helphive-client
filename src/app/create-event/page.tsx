@@ -72,7 +72,7 @@ const CreateEventPage = () => {
       },
       body: JSON.stringify(newEventData),
     })
-    if (!res.ok) {
+    if (!res.ok || res.status===500 || res.status===400)  {
       toast.add({
         type: "error",
         description: "An error occurred in creating event.",
