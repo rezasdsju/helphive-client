@@ -50,6 +50,9 @@ const UpcomingEventCard = ({ event }: { event: IEvent }) => {
                             <span className="truncate">By {event.createdBy.name}</span>
                         </div>
                     </div>
+                    <div >
+                        <button className="w-full mx-auto rounded-md min-[380px]:rounded-xl bg-amber-300 text-gray-800 font-bold text-sm sm:text-base py-1 cursor-pointer">View Event</button>
+                    </div>
                 </div>
             </Link>
         </div>
