@@ -3,6 +3,13 @@
 
 HelpHive is a people-powered social development platform that connects individuals through volunteering opportunities and local social service events, empowering communities to create meaningful change together.
 
+## Live Demo
+
+**Frontend:** [https://helphive-community-indol.vercel.app/](https://helphive-community-indol.vercel.app/)
+
+## Backend API
+
+**Base URL:** [https://helphive-community-server.vercel.app/](https://helphive-community-server.vercel.app/)
 
 ## Features
 
