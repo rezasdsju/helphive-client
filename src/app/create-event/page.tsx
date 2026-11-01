@@ -75,22 +75,8 @@ const CreateEventPage = () => {
     // console.log(newEventData)
 
 
-
-    // const { data, error } = await authClient.token()
-    // if (error) {
-    //   console.log(error)
-    //   toast.add({
-    //     type: "error",
-    //     description: "An error occurred to get token.",
-    //     priority: 'high'
-    //   })
-    //   return
-    // }
-
-    // const jwtToken = data?.token
-    // console.log(jwtToken)
-
-    const jwtToken = getTokenFromClient()
+    const jwtToken = await getTokenFromClient()
+    if (!jwtToken) return
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
       method: "POST",
