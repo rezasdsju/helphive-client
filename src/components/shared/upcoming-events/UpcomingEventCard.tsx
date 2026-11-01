@@ -11,7 +11,7 @@ const UpcomingEventCard = ({ event }: { event: IEvent }) => {
         year: "numeric",
     });
     return (
-        <div className="group h-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-400 hover:shadow-lg">
+        <div className="group h-full overflow-hidden rounded-md min-[360px]:rounded-xl sm:rounded-2xl border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-400 hover:shadow-lg">
             <Link href="#" className="flex h-full flex-col">
                 <div className="relative aspect-16/10 overflow-hidden">
                     <Image
@@ -26,7 +26,7 @@ const UpcomingEventCard = ({ event }: { event: IEvent }) => {
                     </span>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-3 p-4">
+                <div className="flex flex-1 flex-col gap-3 p-2 sm:p-4">
                     <div className="space-y-1.5">
                         <h3 className="line-clamp-1 text-lg font-semibold text-card-foreground">
                             {event.title}
