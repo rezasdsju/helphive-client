@@ -16,15 +16,10 @@ HelpHive is a people-powered social development platform that connects individua
 
 ## Features
 
-- Email and password registration and sign in
-- Google sign in
-- Profile menu with sign out
-- Light and dark theme toggle that remembers your choice
-- Responsive navbar and footer for mobile and desktop
-- Homepage with banner, features and upcoming events carousel
-- Gallery carousel showcasing community service moments
-- Newsletter subscription section (design only)
-- Event creation for authenticated users, including creator name and email
+- Email and password authentication with Google sign-in and profile menu with sign-out
+- Persistent light and dark theme toggle
+- Responsive navbar and footer, homepage banner, feature highlights, upcoming events carousel, community gallery, and newsletter section (design only)
+- Event creation for authenticated users with creator information and JWT-based authorization
 
 ## Technologies
 
