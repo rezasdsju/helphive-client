@@ -14,6 +14,7 @@ HelpHive is a people-powered social development platform that connects individua
 - Homepage with banner, features and upcoming events carousel
 - Gallery carousel showcasing community service moments
 - Newsletter subscription section (design only)
+- Event creation for authenticated users, including creator name and email
 
 ## Technologies
 
