@@ -133,7 +133,7 @@ const CreateEventPage = () => {
                   <Input
                     name="title"
                     id="title"
-                    placeholder="e.g. Winter Clothes Distribution"
+                    placeholder="e.g. Free Education Support Program"
                     minLength={5}
                     maxLength={80}
                     autoComplete="off"
@@ -148,7 +148,7 @@ const CreateEventPage = () => {
                   <Textarea
                     name="description"
                     id="description"
-                    placeholder="e.g. Volunteers will help sort and hand out warm clothes."
+                    placeholder="e.g. Volunteers will run free tutoring sessions and distribute books and stationery."
                     rows={4}
                     minLength={10}
                     maxLength={500}
@@ -201,7 +201,7 @@ const CreateEventPage = () => {
                     name="location"
                     id="location"
                     type="text"
-                    placeholder="e.g. Mirpur 10, Dhaka"
+                    placeholder="e.g. Gorol, Kaligonj, Lalmonirhat"
                     minLength={3}
                     maxLength={100}
                     autoComplete="off"
