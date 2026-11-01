@@ -1,0 +1,125 @@
+import { IEvent } from "@/types/event.types";
+import { LuCalendarDays, LuMapPin, LuUser, LuUsers } from "react-icons/lu";
+import Image from "next/image";
+import Link from "next/link";
+import { LuChevronRight } from "react-icons/lu";
+const EventDetail = ({ event }: { event: IEvent }) => {
+    const formattedDate = new Date(event.date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
+    const joined = event.participants.length;
+    const spotsLeft = event.maxParticipants - joined;
+    const isFull = spotsLeft <= 0;
+
+    return (
+        <div className="mx-auto my-5 w-full max-w-6xl px-3 sm:my-10 sm:px-4">
+
+
+
+
+            <div className="mb-5 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+                <Link href="/" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
+                    Home
+                </Link>
+                <LuChevronRight size={14} />
+                <Link href="/upcoming-events" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
+                    Upcoming Events
+                </Link>
+                <LuChevronRight size={14} />
+                <span className="max-w-48 truncate font-medium text-foreground sm:max-w-xs">
+                    {event.title}
+                </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10">
+                <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-border shadow-sm md:aspect-auto md:min-h-104">
+                    <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover"
+                        loading="eager"
+                    />
+                </div>
+
+                <div className="flex flex-col gap-6">
+                    <div>
+                        <span className="mb-3 inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700 dark:bg-amber-500/15 dark:text-amber-400">
+                            {event.type}
+                        </span>
+                        <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+                            {event.title}
+                        </h1>
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                            {event.description}
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3 rounded-2xl border border-border bg-card p-4 sm:grid-cols-2">
+                        <div className="flex items-center gap-3">
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-500/15 dark:text-amber-400">
+                                <LuCalendarDays size={18} />
+                            </span>
+                            <div>
+                                <p className="text-xs text-muted-foreground">Date</p>
+                                <p className="text-sm font-medium text-card-foreground">{formattedDate}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-500/15 dark:text-amber-400">
+                                <LuMapPin size={18} />
+                            </span>
+                            <div className="min-w-0">
+                                <p className="text-xs text-muted-foreground">Location</p>
+                                <p className="truncate text-sm font-medium text-card-foreground">{event.location}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-500/15 dark:text-amber-400">
+                                <LuUser size={18} />
+                            </span>
+                            <div className="min-w-0">
+                                <p className="text-xs text-muted-foreground">Organized by</p>
+                                <p className="truncate text-sm font-medium text-card-foreground">{event.createdBy.name}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-500/15 dark:text-amber-400">
+                                <LuUsers size={18} />
+                            </span>
+                            <div>
+                                <p className="text-xs text-muted-foreground">Volunteers</p>
+                                <p className="text-sm font-medium text-card-foreground">
+                                    {joined} / {event.maxParticipants} joined
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-auto">
+                        <button
+                            type="button"
+                            disabled={isFull}
+                            className="w-full cursor-pointer rounded-xl bg-amber-500 px-6 py-3 font-bold text-white shadow-sm transition-all duration-200 hover:bg-amber-600 hover:shadow-md active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
+                        >
+                            {isFull ? "Event Full" : "Join Event"}
+                        </button>
+                        {!isFull && (
+                            <p className="mt-2 text-center text-xs text-muted-foreground">
+                                {spotsLeft} {spotsLeft === 1 ? "spot" : "spots"} left
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default EventDetail;
