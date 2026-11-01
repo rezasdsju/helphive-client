@@ -1,8 +1,20 @@
+import { toast } from "@/components/ui/toast";
 
 
 
 
-const UpComingEventsPage = () => {
+const UpComingEventsPage = async() => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/upcoming-events`)
+    if (!res.ok){
+        toast.add({
+            type:'error',
+            description:'Failed to Fetch Upcoming Events',
+            priority:'high'
+        })
+        return
+    }
+    const events = await res.json()
+    console.log(events)
     return (
         <div className="px-2 my-10">
             <div className="text-center">
@@ -16,6 +28,12 @@ const UpComingEventsPage = () => {
                         meaningful difference. Every small act of kindness creates a better tomorrow.
                     </p>
                 </div>
+            </div>
+
+            <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4">
+                {
+
+                }
             </div>
         </div>
     );
