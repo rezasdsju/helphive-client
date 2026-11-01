@@ -14,7 +14,7 @@ const UpComingEventsPage = async() => {
         return
     }
     const events:IEvent[] = await res.json()
-    console.log(events)
+    // console.log(events)
     return (
         <div className="px-2 sm:px-4 my-5 sm:my-10">
             <div className="text-center py-5 sm:py-8">
