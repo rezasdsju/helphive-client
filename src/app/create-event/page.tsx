@@ -40,29 +40,6 @@ const eventTypes = [
 
 
 
-
-
-
-
-
-const event = {
-  "_id": "665f1a2b3c4d5e6f7a8b9c01",
-  "title": "Winter Clothes Distribution",
-  "description": "We are collecting and distributing warm clothes to people in need. Volunteers will help sort, pack and hand out clothes.",
-  "type": "Clothes Distribution",
-  "location": "Mirpur 10, Dhaka",
-  "date": "2026-12-15T09:00:00.000Z",
-  "image": "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&h=500&fit=crop",
-  "maxParticipants": 50,
-  "participants": [],
-  "createdBy": {
-    "id": "user_id_1",
-    "name": "Community Organizer",
-    "email": "organizer@example.com"
-  },
-  "createdAt": "2026-10-31T10:30:00.000Z"
-}
-
 const CreateEventPage = () => {
   const [today, setToday] = useState('')
   useEffect(() => {
@@ -72,13 +49,13 @@ const CreateEventPage = () => {
 
   const { data: session } = authClient.useSession()
   const user = session?.user
-  console.log(user)
+  // console.log(user)
 
   const handleCreateEvent = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const eventData = Object.fromEntries(formData.entries())
-    console.log(eventData)
+    // console.log(eventData)
 
     const newEventData = {
       ...eventData,
@@ -86,7 +63,7 @@ const CreateEventPage = () => {
       createdAt: new Date().toISOString()
 
     }
-    console.log(newEventData)
+    // console.log(newEventData)
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
       method: "POST",
@@ -104,7 +81,7 @@ const CreateEventPage = () => {
       return
     }
     const result = await res.json()
-    console.log(result)
+    // console.log(result)
 
     if (result.acknowledged){
       toast.add({
