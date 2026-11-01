@@ -3,23 +3,7 @@ import Image from "next/image";
 import { LuCalendarDays, LuMapPin, LuUser } from "react-icons/lu";
 
 
-export interface IEvent {
-    _id: string;
-    title: string;
-    description: string;
-    type: string;
-    location: string;
-    date: string;
-    image: string;
-    maxParticipants: number;
-    participants: string[];
-    createdBy: {
-        id: string;
-        name: string;
-        email: string;
-    };
-    createdAt: string;
-}
+import type { IEvent } from "@/types/event.types";
 const UpcomingEventCard = ({ event }: { event: IEvent }) => {
     const formattedDate = new Date(event.date).toLocaleDateString("en-GB", {
         day: "numeric",
