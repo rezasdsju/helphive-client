@@ -7,7 +7,6 @@ import {
     PopoverTitle,
     PopoverTrigger,
 } from "@/components/ui/popover";
-import { LuLogIn, LuUserPlus } from "react-icons/lu";
 import Link from "next/link";
 
 import {
@@ -36,16 +35,22 @@ interface IUser {
 }
 const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
     const [open, setOpen] = useState(false)
-
+    const [isSignedOut, setIsSignedOut] = useState(false)
     const router = useRouter()
     const handleSignOut = async () => {
+        if (isSignedOut){
+            return
+        }
+        setIsSignedOut(true);
         const { data, error } = await authClient.signOut()
         if (error) {
+            setIsSignedOut(false)
             toast.add({
                 type: "error",
                 description: "An error occurred during sign out.",
                 priority: 'high'
             })
+            return
         }
         if (data) {
             toast.add({
@@ -109,6 +114,7 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
                     <button
                         type="button"
                         onClick={handleSignOut}
+                        disabled={isSignedOut}
                         className="flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 transition hover:bg-red-50 dark:hover:bg-red-500/10"
                     >
                         <LuLogOut size={17} />
