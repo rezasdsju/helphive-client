@@ -11,6 +11,9 @@ HelpHive is a people-powered social development platform that connects individua
 
 **Base URL:** [https://helphive-community-server.vercel.app/](https://helphive-community-server.vercel.app/)
 
+**Backend Repo:** [HelpHive Server](https://github.com/rezasdsju/helphive-server)
+
+
 ## Features
 
 - Email and password registration and sign in
