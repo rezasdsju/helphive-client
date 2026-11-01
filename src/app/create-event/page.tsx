@@ -33,6 +33,7 @@ const eventTypes = [
   { value: "Blanket Distribution", label: "Blanket Distribution" },
   { value: "Cleanup", label: "Cleanup" },
   { value: "Health Camp", label: "Health Camp" },
+  { value: "Blood Donation", label: "Blood Donation" },
   { value: "Plantation", label: "Plantation" },
   { value: "Education", label: "Education" },
   { value: "Other", label: "Other" },
