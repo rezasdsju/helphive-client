@@ -51,6 +51,8 @@ const CreateEventPage = () => {
   const user = session?.user
   // console.log(user)
 
+
+
   const handleCreateEvent = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -60,19 +62,38 @@ const CreateEventPage = () => {
     const newEventData = {
       ...eventData,
       createdBy: { id: user?.id, name: user?.name, email: user?.email },
+      maxParticipants: Number(eventData.maxParticipants),
+      participants: [],
       createdAt: new Date().toISOString()
 
     }
     // console.log(newEventData)
 
+
+
+    const { data, error } = await authClient.token()
+    if (error) {
+      console.log(error)
+      toast.add({
+        type: "error",
+        description: "An error occurred to get token.",
+        priority: 'high'
+      })
+      return
+    }
+
+    const jwtToken = data?.token
+    console.log(jwtToken)
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${jwtToken}`
       },
       body: JSON.stringify(newEventData),
     })
-    if (!res.ok || res.status===500 || res.status===400)  {
+    if (!res.ok || res.status === 500 || res.status === 400) {
       toast.add({
         type: "error",
         description: "An error occurred in creating event.",
@@ -83,12 +104,12 @@ const CreateEventPage = () => {
     const result = await res.json()
     // console.log(result)
 
-    if (result.acknowledged){
+    if (result.acknowledged) {
       toast.add({
         type: "success",
         description: "You have created event successfully!",
         priority: 'high'
-      })  
+      })
     }
 
   }
