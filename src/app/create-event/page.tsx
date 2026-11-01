@@ -32,7 +32,7 @@ const eventTypes = [
   { value: "Food Distribution", label: "Food Distribution" },
   { value: "Blanket Distribution", label: "Blanket Distribution" },
   { value: "Community Support", label: "Community Support" },
-  { value: "Public Park Restoration Drive", label: "Public Park Restoration Drive" },
+  { value: "Environment", label: "Environment" },
   { value: "Cleanup", label: "Cleanup" },
   { value: "Health Camp", label: "Health Camp" },
   { value: "Blood Donation", label: "Blood Donation" },
