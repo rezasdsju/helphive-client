@@ -1,6 +1,7 @@
 import { IEvent } from "@/types/event.types";
 import Image from "next/image";
 import { FiMapPin, FiUsers } from "react-icons/fi";
+import UpdateEventDialog from "./UpdateEventDialog";
 
 const ManageEventCard = ({ event }: { event: IEvent }) => {
     return (
@@ -41,9 +42,7 @@ const ManageEventCard = ({ event }: { event: IEvent }) => {
             </div>
 
             <div className="flex flex-col gap-2 sm:col-span-2 sm:items-end">
-                <button className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 sm:w-auto">
-                    Update Event
-                </button>
+                <UpdateEventDialog event={event} />
                 <button className="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-medium text-red-600 transition hover:bg-red-100 sm:w-auto dark:border-red-800 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/40">
                     Delete Event
                 </button>

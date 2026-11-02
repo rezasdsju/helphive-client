@@ -1,6 +1,7 @@
 import { IEvent } from "@/types/event.types";
 import Image from "next/image";
 import { FiMapPin, FiUsers } from "react-icons/fi";
+import UpdateEventDialog from "./UpdateEventDialog";
 
 const ManageEventCarouselCard = ({ event }: { event: IEvent }) => {
     return (
@@ -18,7 +19,7 @@ const ManageEventCarouselCard = ({ event }: { event: IEvent }) => {
                 </div>
             </div>
 
-    
+
             <div className="flex flex-col gap-2">
                 <span className="text-sm font-semibold text-gray-900 leading-snug wrap-break-word">
                     {event.title}
@@ -38,11 +39,9 @@ const ManageEventCarouselCard = ({ event }: { event: IEvent }) => {
                 </div>
             </div>
 
-        
+
             <div className="flex flex-col gap-2">
-                <button className="w-full rounded-md bg-blue-600 px-3 py-2 text-xs font-medium text-white">
-                    Update Event
-                </button>
+                <UpdateEventDialog event={event} />
                 <button className="w-full rounded-md bg-red-50 px-3 py-2 text-xs font-medium text-red-600 border border-red-200">
                     Delete Event
                 </button>
