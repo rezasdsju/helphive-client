@@ -1,9 +1,7 @@
-import { LuChevronRight } from "react-icons/lu";
-import Link from "next/link";
+
 import getTokenFromServer from "@/lib/getTokenFromServer";
 import { IEvent } from "@/types/event.types";
 import { redirect } from "next/navigation";
-import FilterJoinedEvents from "@/components/shared/events/FilterJoinedEvents";
 import JoinedEvents from "@/components/shared/events/JoinedEvents";
 
 
