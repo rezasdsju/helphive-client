@@ -22,7 +22,7 @@ export default function FilterJoinedEvents({setValueOfEventSelected}:IFilterJoin
     return (
     <Select onValueChange={(value)=>setValueOfEventSelected(value as string)} items={items}>
       <SelectTrigger className="w-full max-w-48">
-        <SelectValue />
+        <SelectValue placeholder="Select Event Type"/>
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
