@@ -1,4 +1,5 @@
 
+import { IEvent } from "@/types/event.types";
 import UpcomingEventCard from "../shared/upcoming-events/UpcomingEventCard";
 
 import {
@@ -112,23 +113,7 @@ const upcomingEvents = [
         "createdAt": "2026-10-31T10:55:00.000Z"
     }
 ]
-export interface IEvent {
-    _id: string;
-    title: string;
-    description: string;
-    type: string;
-    location: string;
-    date: string;
-    image: string;
-    maxParticipants: number;
-    participants: string[];
-    createdBy: {
-        id: string;
-        name: string;
-        email: string;
-    };
-    createdAt: string;
-}
+
 const UpcomingEvents = () => {
     return (
         <div className="my-5 sm:my-15 px-2">
