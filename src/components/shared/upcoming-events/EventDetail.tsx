@@ -54,7 +54,7 @@ const EventDetail = ({ event }: { event: IEvent }) => {
         }
         const jwtToken = await getTokenFromClient()
         if (!jwtToken) return
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/add-perticipants/${event._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/add-participant/${event._id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
