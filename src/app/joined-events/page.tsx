@@ -21,8 +21,13 @@ const JoinedEventPage = async () => {
     if (!res.ok) {
         throw new Error('Failed to Fetch your events')
     }
-    const joinedEvents: IEvent[] = await res.json()
-    // console.log(joinedEvents)
+    const joinedAllAndUpcominfEvents = await res.json()
+    // console.log(joinedAllAndUpcominfEvents)
+    const joinedAllEvents: IEvent[] = joinedAllAndUpcominfEvents[0].joinedAllEvents
+
+    const joinedUpcomingEvents: IEvent[] = joinedAllAndUpcominfEvents[1].joinedUpcomingEvents
+    console.log(joinedAllEvents)
+    console.log(joinedUpcomingEvents)
     return (
         <div className='px-2 sm:px-5 my-5 sm:my-10'>
             <div>
@@ -34,6 +39,16 @@ const JoinedEventPage = async () => {
                     <Link href="/joined-events" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
                         Joined Events
                     </Link>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <h2 className="text-2xl min-[340px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center  font-bold">
+                        <span className="pr-2 text-gray-900 dark:text-white">The Events</span>
+                        <span className="pr-2 text-blue-600 dark:text-blue-300">You</span>
+                        <span className="text-amber-500 dark:text-amber-400">Already Joined</span>
+                    </h2>
                 </div>
             </div>
         </div>
