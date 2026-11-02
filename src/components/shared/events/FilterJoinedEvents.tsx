@@ -20,9 +20,9 @@ interface IFilterJoinEvents{
 export default function FilterJoinedEvents({setValueOfEventSelected}:IFilterJoinEvents) {
     
     return (
-    <Select onValueChange={(value)=>setValueOfEventSelected(value as string)} items={items}>
+    <Select onValueChange={(value)=>setValueOfEventSelected(value as string)} items={items} defaultValue="all_events">
       <SelectTrigger className="w-full max-w-48">
-        <SelectValue placeholder="Select Event Type"/>
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
