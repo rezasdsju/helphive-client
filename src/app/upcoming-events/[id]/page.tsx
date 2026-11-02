@@ -1,4 +1,4 @@
-import EventDetail from "@/components/shared/events/EventDetail";
+import EventDetail from "@/components/events/EventDetail";
 import { toast } from "@/components/ui/toast";
 import { IEvent } from "@/types/event.types";
 

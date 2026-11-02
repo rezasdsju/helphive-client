@@ -1,4 +1,4 @@
-import UpcomingEventCard from "@/components/shared/events/EventCard";
+import UpcomingEventCard from "@/components/events/EventCard";
 import { toast } from "@/components/ui/toast";
 
 import type {IEvent} from '../../types/event.types'

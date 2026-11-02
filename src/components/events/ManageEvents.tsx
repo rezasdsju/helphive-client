@@ -1,7 +1,12 @@
 'use client'
+import { IEvent } from "@/types/event.types";
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
-const ManageEvents = () => {
+interface IManageEvent {
+    createdAllEvents: IEvent[]
+    createdUpcomingEvents: IEvent[]
+}
+const ManageEvents = ({createdAllEvents, createdUpcomingEvents}:IManageEvent) => {
     return (
         <div>
             <div className="mx-auto my-5 w-full max-w-6xl px-3 sm:my-10 sm:px-5">

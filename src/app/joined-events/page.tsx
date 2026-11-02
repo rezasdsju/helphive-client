@@ -2,7 +2,7 @@
 import getTokenFromServer from "@/lib/getTokenFromServer";
 import { IEvent } from "@/types/event.types";
 import { redirect } from "next/navigation";
-import JoinedEvents from "@/components/shared/events/JoinedEvents";
+import JoinedEvents from "@/components/events/JoinedEvents";
 
 
 const JoinedEventPage = async () => {
