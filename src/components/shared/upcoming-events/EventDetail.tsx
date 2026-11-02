@@ -1,8 +1,16 @@
-import { IEvent } from "@/types/event.types";
+'use client'
+import { IEvent, IParticipant } from "@/types/event.types";
 import { LuCalendarDays, LuMapPin, LuUser, LuUsers } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
+import getTokenFromClient from "@/lib/getTokenFromClient";
+
+type IUser = IParticipant | null | undefined
+
 const EventDetail = ({ event }: { event: IEvent }) => {
     const formattedDate = new Date(event.date).toLocaleDateString("en-GB", {
         day: "numeric",
@@ -11,14 +19,82 @@ const EventDetail = ({ event }: { event: IEvent }) => {
     });
     const joined = event.participants.length;
     const spotsLeft = event.maxParticipants - joined;
-    const isFull = spotsLeft <= 0;
 
+    const isFull = spotsLeft <= 0
+
+
+
+    const router = useRouter()
+
+    const { data: session } = authClient.useSession()
+    const user: IUser = session?.user
+
+
+    const alreadyJoined = !!user && event.participants.some((p) => p.id === user.id)
+
+
+
+    const handleJoinEvent = async () => {
+        if (!user) {
+            toast.add({
+                type: 'error',
+                description: 'You are not signed in. Please register Sign in',
+                priority: 'high'
+            })
+            router.replace('/signin')
+            return
+        }
+        if (alreadyJoined) {
+            toast.add({
+                type: 'error',
+                description: 'You already joined',
+                priority: 'high'
+            })
+            return
+        }
+        const jwtToken = await getTokenFromClient()
+        if (!jwtToken) return
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/add-perticipants/${event._id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${jwtToken}`
+            },
+            body: JSON.stringify(user),
+        })
+
+        if (res.status === 409) {
+            toast.add({
+                type: 'error',
+                description: 'You already joined',
+                priority: 'high'
+            })
+            return
+        }
+        if (!res.ok) {
+            console.log('error')
+            toast.add({
+                type: 'error',
+                description: 'Error occured to book your participation request',
+                priority: 'high'
+            })
+            return
+        }
+        const result = await res.json()
+        // console.log(result)
+        if (result.acknowledged) {
+            toast.add({
+                type: 'success',
+                description: 'You have joined successfully!',
+                priority: 'high'
+            })
+            // router.refresh()
+            window.location.reload()
+
+        }
+    }
     return (
         <div className="mx-auto my-5 w-full max-w-6xl px-3 sm:my-10 sm:px-4">
-
-
-
-
             <div className="mb-5 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
                 <Link href="/" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
                     Home
@@ -104,13 +180,14 @@ const EventDetail = ({ event }: { event: IEvent }) => {
 
                     <div className="mt-auto">
                         <button
+                            onClick={handleJoinEvent}
                             type="button"
-                            disabled={isFull}
+                            disabled={isFull || alreadyJoined}
                             className="w-full cursor-pointer rounded-xl bg-amber-500 px-6 py-3 font-bold text-white shadow-sm transition-all duration-200 hover:bg-amber-600 hover:shadow-md active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
                         >
-                            {isFull ? "Event Full" : "Join Event"}
+                            {isFull ? "Event Full" : alreadyJoined ? "Already Joined" : "Join Event"}
                         </button>
-                        {!isFull && (
+                        {(!isFull || alreadyJoined) && (
                             <p className="mt-2 text-center text-xs text-muted-foreground">
                                 {spotsLeft} {spotsLeft === 1 ? "spot" : "spots"} left
                             </p>
