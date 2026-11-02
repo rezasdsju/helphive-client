@@ -60,13 +60,13 @@ const Navbar = () => {
                                 <div>
                                     <div className="hidden sm:flex items-center justify-center gap-2">
                                         <Link href={`/signin`}>
-                                            <button className="rounded-md bg-amber-300 text-gray-900 px-6 py-2.5 text-sm font-semibold  transition hover:bg-amber-500 cursor-pointer">
+                                            <button className="rounded-md border border-gray-300 px-6 py-2.5 text-sm font-semibold text-foreground transition hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer">
                                                 Sign In
                                             </button>
                                         </Link>
 
                                         <Link href={`/signup`}>
-                                            <button className="rounded-md border border-gray-300 px-6 py-2.5 text-sm font-semibold text-foreground transition hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer">
+                                            <button className="rounded-md bg-amber-300 text-gray-900 px-6 py-2.5 text-sm font-semibold  transition hover:bg-amber-500 cursor-pointer">
                                                 Sign Up
                                             </button>
                                         </Link>
