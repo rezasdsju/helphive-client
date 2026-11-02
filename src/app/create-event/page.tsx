@@ -24,7 +24,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
 import { authClient } from "@/lib/auth-client"
 import getTokenFromClient from "@/lib/getTokenFromClient"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 
 
@@ -46,15 +46,19 @@ const eventTypes = [
 
 
 const CreateEventPage = () => {
-  const [today, setToday] = useState('')
-  useEffect(() => {
-    setToday(new Date().toLocaleDateString("en-CA"))
-  }, [])
+
+  const getTomorrowDate = () => {
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    return tomorrow.toLocaleDateString("en-CA", {
+      timeZone: "Asia/Dhaka",
+    })
+  }
+  const [minDate] = useState(getTomorrowDate)
 
 
-  const { data: session } = authClient.useSession()
-  const user = session?.user
-  // console.log(user)
+
 
 
 
@@ -66,7 +70,6 @@ const CreateEventPage = () => {
 
     const newEventData = {
       ...eventData,
-      // createdBy: { id: user?.id, name: user?.name, email: user?.email },
       maxParticipants: Number(eventData.maxParticipants),
       participants: [],
       createdAt: new Date().toISOString()
@@ -210,7 +213,7 @@ const CreateEventPage = () => {
                     name="date"
                     id="date"
                     type="date"
-                    min={today || undefined}
+                    min={minDate || undefined}
                     required
                   />
                 </Field>
