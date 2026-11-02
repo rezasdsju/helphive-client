@@ -22,9 +22,8 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
-import { authClient } from "@/lib/auth-client"
 import getTokenFromClient from "@/lib/getTokenFromClient"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 
 
@@ -47,15 +46,26 @@ const eventTypes = [
 
 const CreateEventPage = () => {
 
-  const getTomorrowDate = () => {
-    const tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
+  const [minDate, setMinDate] = useState("")
 
-    return tomorrow.toLocaleDateString("en-CA", {
-      timeZone: "Asia/Dhaka",
-    })
-  }
-  const [minDate] = useState(getTomorrowDate)
+  useEffect(() => {
+    const updateMinDate = () => {
+      const tomorrow = new Date()
+      tomorrow.setDate(tomorrow.getDate() + 1)
+
+      setMinDate(
+        tomorrow.toLocaleDateString("en-CA", {
+          timeZone: "Asia/Dhaka",
+        })
+      )
+    }
+
+    updateMinDate()
+
+    const interval = setInterval(updateMinDate, 10 * 60 * 1000)
+
+    return () => clearInterval(interval)
+  }, [])
 
 
 
