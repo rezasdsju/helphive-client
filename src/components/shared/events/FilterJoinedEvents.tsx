@@ -8,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { IEvent } from "@/types/event.types"
 import React from "react"
 
 const items = [
