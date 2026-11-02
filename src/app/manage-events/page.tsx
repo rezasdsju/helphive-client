@@ -24,7 +24,7 @@ const ManageEventsPage = async () => {
     // console.log(createdUpcomingEvents)
     return (
         <div>
-            <ManageEvents />
+            <ManageEvents createdAllEvents={createdAllEvents} createdUpcomingEvents={createdUpcomingEvents}/>
         </div>
     );
 };
