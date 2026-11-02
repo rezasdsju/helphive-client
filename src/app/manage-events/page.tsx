@@ -1,7 +1,27 @@
+import getTokenFromServer from "@/lib/getTokenFromServer";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { LuChevronRight } from "react-icons/lu";
 
-const ManageEventsPage = () => {
+const ManageEventsPage = async() => {
+    const token = await getTokenFromServer()
+    // console.log(token)
+    if (!token){
+       redirect('/signin')
+    }
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/manage-events/`,{
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
+    if (!res.ok){
+        redirect('/signin')
+    }
+    const result = await res.json()
+    // console.log(result)
+    const [{createdAllEvents},{createdUpcomingEvents}] = result 
+    // console.log(createdAllEvents)
+    // console.log(createdUpcomingEvents)
     return (
         <div className="mx-auto my-5 w-full max-w-6xl px-3 sm:my-10 sm:px-5">
             <nav aria-label="Breadcrumb" className="mb-5">
