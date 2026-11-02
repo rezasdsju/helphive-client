@@ -15,7 +15,7 @@ const Navbar = () => {
     // console.log(session)
     const user = session?.user
     return (
-        <nav className="border-b border-border shadow py-2 ">
+        <nav className="sticky top-0 z-50 bg-white dark:bg-gray-950 border-b border-border shadow py-2 ">
             <div className="grid grid-cols-3 items-center  w-full max-w-6xl  mx-auto px-2">
                 <Link href="/">
                     <>
@@ -60,7 +60,7 @@ const Navbar = () => {
                                 <div>
                                     <div className="hidden sm:flex items-center justify-center gap-2">
                                         <Link href={`/signin`}>
-                                            <button className="rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 cursor-pointer">
+                                            <button className="rounded-md bg-amber-300 text-gray-900 px-6 py-2.5 text-sm font-semibold  transition hover:bg-amber-500 cursor-pointer">
                                                 Sign In
                                             </button>
                                         </Link>
