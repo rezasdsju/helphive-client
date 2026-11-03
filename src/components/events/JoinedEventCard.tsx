@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const JoinedEventCard = ({ event }: { event: IEvent }) => {
-    console.log(event.date)
+    
     const [passed, setPassed] = useState(false)
     useEffect(() => {
         const today = new Date().toLocaleDateString("en-CA")
