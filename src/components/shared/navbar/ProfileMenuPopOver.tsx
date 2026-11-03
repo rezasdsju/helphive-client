@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { LuUser, LuCalendarPlus, LuCalendarCog, LuCalendarCheck, LuLogOut } from "react-icons/lu"
 
 const menuItems = [
-    { label: "Profile", href: "#", icon: LuUser },
+    { label: "Profile", href: "/profile", icon: LuUser },
     { label: "Create Event", href: "/create-event", icon: LuCalendarPlus },
     { label: "Manage Events", href: "/manage-events", icon: LuCalendarCog },
     { label: "Joined Events", href: "/joined-events", icon: LuCalendarCheck },
