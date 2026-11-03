@@ -1,7 +1,7 @@
 'use client'
 import { IEvent } from "@/types/event.types";
 import UpcomingEventsSectionIntro from "./UpcomingEventsSectionIntro";
-import UpcomingEventCard from "./EventCard";
+import UpcomingEventCard from "./UpcomingEventCard";
 import { useState } from "react";
 
 // const eventTypes = [

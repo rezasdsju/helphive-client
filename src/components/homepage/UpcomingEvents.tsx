@@ -1,6 +1,6 @@
 
 import { IEvent } from "@/types/event.types";
-import UpcomingEventCard from "../events/EventCard";
+import UpcomingEventCard from "../events/UpcomingEventCard";
 
 import {
     Carousel,
