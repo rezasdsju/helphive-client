@@ -28,19 +28,22 @@ import React, { useEffect, useState } from "react"
 
 
 const eventTypes = [
-  { value: "Clothes Distribution", label: "Clothes Distribution" },
-  { value: "Food Distribution", label: "Food Distribution" },
-  { value: "Blanket Distribution", label: "Blanket Distribution" },
-  { value: "Community Support", label: "Community Support" },
-  { value: "Environment", label: "Environment" },
-  { value: "Cleanup", label: "Cleanup" },
-  { value: "Health Camp", label: "Health Camp" },
-  { value: "Blood Donation", label: "Blood Donation" },
-  { value: "Plantation", label: "Plantation" },
-  { value: "Education", label: "Education" },
-  { value: "Other", label: "Other" },
+    { value: "Clothes & Essential Items", label: "Clothes & Essential Items" },
+    { value: "Food Distribution", label: "Food Distribution" },
+    { value: "Community Support", label: "Community Support" },
+    { value: "Environmental Protection", label: "Environmental Protection" },
+    { value: "Cleanup & Sanitation", label: "Cleanup & Sanitation" },
+    { value: "Health & Wellness", label: "Health & Wellness" },
+    { value: "Blood Donation", label: "Blood Donation" },
+    { value: "Education & Skill Development", label: "Education & Skill Development" },
+    { value: "Disaster Relief", label: "Disaster Relief" },
+    { value: "Fundraising & Donation Drive", label: "Fundraising & Donation Drive" },
+    { value: "Elderly & Child Welfare", label: "Elderly & Child Welfare" },
+    { value: "Animal Welfare", label: "Animal Welfare" },
+    { value: "Safety & Awareness Campaign", label: "Safety & Awareness Campaign" },
+    { value: "Women Empowerment", label: "Women Empowerment" },
+    { value: "Other", label: "Other" },
 ]
-
 
 
 
