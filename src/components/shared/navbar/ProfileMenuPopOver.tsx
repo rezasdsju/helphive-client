@@ -19,7 +19,12 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
 import { LuUser, LuCalendarPlus, LuCalendarCog, LuCalendarCheck, LuLogOut } from "react-icons/lu"
-
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 const menuItems = [
     { label: "Profile", href: "/profile", icon: LuUser },
     { label: "Create Event", href: "/create-event", icon: LuCalendarPlus },
@@ -37,7 +42,7 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
     const [isSignedOut, setIsSignedOut] = useState(false)
     const router = useRouter()
     const handleSignOut = async () => {
-        if (isSignedOut){
+        if (isSignedOut) {
             return
         }
         setIsSignedOut(true);
@@ -64,19 +69,33 @@ const ProfileMenuPopOver = ({ user }: { user: IUser }) => {
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger
                 render={
-                    <button className="size-10 shrink-0 cursor-pointer rounded-full flex items-center justify-center">
-                        <Avatar className="size-10 overflow-hidden border border-gray-100 dark:border-gray-700">
-                            {
-                                user.image &&
-                                <AvatarImage
-                                    src={user.image}
-                                    alt={user.name.charAt(0)}
-                                    className="size-full object-cover"
-                                />
-                            }
-                            <AvatarFallback className="bg-amber-100 font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-400">{user.name.charAt(0).toLocaleUpperCase()}</AvatarFallback>
-                        </Avatar>
-                    </button>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button className="size-10 shrink-0 cursor-pointer rounded-full flex items-center justify-center">
+                                    <Avatar className="size-10 overflow-hidden border border-gray-100 dark:border-gray-700">
+                                        {user.image && (
+                                            <AvatarImage
+                                                src={user.image}
+                                                alt={user.name}
+                                                className="size-full object-cover"
+                                            />
+                                        )}
+                                        <AvatarFallback className="bg-amber-100 font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-400">
+                                            {user.name.charAt(0).toUpperCase()}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </button>
+                            </TooltipTrigger>
+
+                            <TooltipContent
+                                side="bottom"
+                                className="rounded-lg border border-border bg-popover px-3 py-2 text-sm font-medium shadow-lg"
+                            >
+                                {user.name}
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
 
                 }
             />
