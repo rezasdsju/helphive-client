@@ -1,6 +1,6 @@
 import ManageEvents from "@/components/events/ManageEvents";
 import getTokenFromServer from "@/lib/getTokenFromServer";
-import { redirect } from "next/navigation";
+
 
 
 const ManageEventsPage = async () => {
