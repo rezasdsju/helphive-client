@@ -21,7 +21,7 @@ HelpHive is a people-powered social development platform that connects individua
 - Responsive navbar and footer
 - Homepage banner, feature highlights, upcoming events carousel, community gallery, and newsletter section (design only)
 - Event creation for authenticated users with JWT-based authorization
-- Public upcoming events page with individual event details
+- Public upcoming events page with individual event details and category-based filtering
 - JWT-protected event participation with duplicate join prevention
 - JWT-protected joined events page with filters for all and upcoming events
 - JWT-protected event management page to view created events, update event details and delete events
