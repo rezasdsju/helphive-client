@@ -34,25 +34,28 @@ import { eventCategories } from "@/lib/eventCategories"
 const CreateEventPage = () => {
 
   const [minDate, setMinDate] = useState("")
+  
+    useEffect(() => {
+        const updateMinDate = () => {
+            const dhakaToday = new Date().toLocaleDateString("en-CA", {
+                timeZone: "Asia/Dhaka",
+            })
 
-  useEffect(() => {
-    const updateMinDate = () => {
-      const tomorrow = new Date()
-      tomorrow.setDate(tomorrow.getDate() + 1)
+            const [y, m, d] = dhakaToday.split("-").map(Number)
+            const tomorrow = new Date(Date.UTC(y, m - 1, d + 1))
+            const dhakaTomorrow = tomorrow.toISOString().slice(0, 10)
 
-      setMinDate(
-        tomorrow.toLocaleDateString("en-CA", {
-          timeZone: "Asia/Dhaka",
-        })
-      )
-    }
+         
+            setMinDate(dhakaTomorrow)
+        }
 
-    updateMinDate()
+        updateMinDate()
 
-    const interval = setInterval(updateMinDate, 10 * 60 * 1000)
+        const interval = setInterval(updateMinDate, 10 * 60 * 1000)
 
-    return () => clearInterval(interval)
-  }, [])
+        return () => clearInterval(interval)
+    }, [])
+
 
 
 
