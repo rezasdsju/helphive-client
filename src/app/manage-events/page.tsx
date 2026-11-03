@@ -15,7 +15,7 @@ const ManageEventsPage = async () => {
         }
     })
     if (!res.ok) {
-        redirect('/signin')
+        return
     }
     const result = await res.json()
     // console.log(result)
