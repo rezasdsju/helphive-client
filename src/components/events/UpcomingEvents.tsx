@@ -42,27 +42,27 @@ const items = [
 ]
 const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
     const [valueOfEventCategorySelected, setValueOfEventCategorySelected] = useState('all_categories')
-    const filteredEvents = events.filter((event)=>{
-        if (valueOfEventCategorySelected==='all_categories'){
+    const filteredEvents = events.filter((event) => {
+        if (valueOfEventCategorySelected === 'all_categories') {
             return true
         }
-        const selectedCategory = items.find((item)=>{
-            return item.value===valueOfEventCategorySelected
+        const selectedCategory = items.find((item) => {
+            return item.value === valueOfEventCategorySelected
         })
-        return event.type===selectedCategory?.label
+        return event.type === selectedCategory?.label
     })
     return (
         <div className="px-2 sm:px-4 my-5 sm:my-10">
-            <UpcomingEventsSectionIntro items={items} valueOfEventCategorySelected={valueOfEventCategorySelected} setValueOfEventCategorySelected={setValueOfEventCategorySelected} events={events} />
+            <UpcomingEventsSectionIntro items={items} filteredEvents={filteredEvents} setValueOfEventCategorySelected={setValueOfEventCategorySelected}/>
 
-       
-                    <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-1 min-[360px]:gap-2 sm:gap-4">
-                        {
-                            filteredEvents.map((event: IEvent) => <UpcomingEventCard key={event._id} event={event} />)
 
-                        }
-                    </div>
-        
+            <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-1 min-[360px]:gap-2 sm:gap-4">
+                {
+                    filteredEvents.map((event: IEvent) => <UpcomingEventCard key={event._id} event={event} />)
+
+                }
+            </div>
+
         </div>
     );
 };

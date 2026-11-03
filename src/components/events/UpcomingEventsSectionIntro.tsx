@@ -26,12 +26,11 @@ interface IItem {
     value: string
 }
 interface IUpcomingEventsSectionIntro {
-    events: IEvent[],
-    valueOfEventCategorySelected: string,
+    filteredEvents: IEvent[],
     setValueOfEventCategorySelected: React.Dispatch<React.SetStateAction<string>>,
     items: IItem[]
 }
-const UpcomingEventsSectionIntro = ({ items, events, valueOfEventCategorySelected, setValueOfEventCategorySelected }: IUpcomingEventsSectionIntro) => {
+const UpcomingEventsSectionIntro = ({ items, filteredEvents, setValueOfEventCategorySelected }: IUpcomingEventsSectionIntro) => {
     return (
         <div>
             <div className=" py-5 sm:py-8">
@@ -44,7 +43,7 @@ const UpcomingEventsSectionIntro = ({ items, events, valueOfEventCategorySelecte
                         Discover upcoming community events and join hands with others to make a
                         meaningful difference. Every small act of kindness creates a better tomorrow.
                     </p>
-                    <p>{events.length} upcoming events found</p>
+                    <p>{filteredEvents.length} upcoming events found</p>
                 </div>
             </div>
 
