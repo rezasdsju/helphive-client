@@ -18,7 +18,7 @@ const ThemeToggle = () => {
         <button
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             aria-label="Toggle theme"
-            className="flex size-10 items-center justify-center rounded-full border border-transparent text-gray-700 transition hover:bg-gray-100 cursor-pointer min-[430px]:border-border dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="flex size-10 items-center justify-center rounded-full border border-transparent text-gray-700 transition hover:bg-gray-100 cursor-pointer min-[430px]:border-border dark:border-transparent dark:min-[430px]:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
         >
             {
                 resolvedTheme === 'dark' ? <MdOutlineLightMode size={20} /> : <MdOutlineDarkMode size={20} />
