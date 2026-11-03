@@ -94,7 +94,7 @@ const CreateEventPage = () => {
         email: user.email
       },
       // ***NOTE(createdBy)***created owner will be verified in backend and then will be saved to Database
-      // to fullfill assignment requirements I added createdBy here. but it will not be used. createdBy will be generated in backend
+      // to fullfill assignment requirements   createdBy was added here. but it will not be used. createdBy will be generated in backend
 
     }
 
