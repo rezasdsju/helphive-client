@@ -38,11 +38,10 @@ const SignUpPage = () => {
             return;
         }
         const validPassword = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(userData.password);
-        // console.log(validPassword)
         if (!validPassword) {
             toast.add({
                 type: "error",
-                description: "Password Invalid. Must have an uppercase letter, a lowercase letter",
+                description: "Password Invalid. Must have an uppercase letter, a lowercase letter, and at least 6 characters",
                 priority: "high",
             });
             return
@@ -69,15 +68,14 @@ const SignUpPage = () => {
                 description: "Your account has been created successfully!",
                 priority: "high",
             });
-            router.replace('/signin')
-
+            setTimeout(() => router.replace('/signin'), 1500)
         }
     }
 
 
 
     const handleGoogleSignIn = async () => {
-        const {error} = await authClient.signIn.social({
+        const { error } = await authClient.signIn.social({
             provider: 'google'
         })
         if (error) {
@@ -128,7 +126,7 @@ const SignUpPage = () => {
                             <FieldLabel htmlFor="password">Password</FieldLabel>
                             <Input name="password" id="password" type="password" required />
                             <FieldDescription>
-                                Must be at least 8 characters long.
+                                Must be at least 6 characters long and contain uppercase and lowercase letters.
                             </FieldDescription>
                         </Field>
                         <Field>
@@ -142,10 +140,10 @@ const SignUpPage = () => {
                             <Field>
                                 <Button type="submit" className={`cursor-pointer`}>Create Account</Button>
                                 <Button onClick={handleGoogleSignIn} variant="outline" type="button" className={`cursor-pointer`}>
-                                    Sign up with Google
+                                    Login with Google
                                 </Button>
                                 <FieldDescription className="px-6 text-center">
-                                    Already have an account? <Link href="/signin">Sign in</Link>
+                                    Already have an account? <Link href="/signin">Login</Link>
                                 </FieldDescription>
                             </Field>
                         </FieldGroup>
