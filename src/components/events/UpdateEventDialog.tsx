@@ -57,17 +57,20 @@ const eventTypes = [
 
 export default function UpdateEventDialog({ event }: { event: IEvent }) {
     const [minDate, setMinDate] = useState("")
+    const [today, setToday] = useState("")
     const [open, setOpen] = useState(false)
     useEffect(() => {
         const updateMinDate = () => {
-            const tomorrow = new Date()
-            tomorrow.setDate(tomorrow.getDate() + 1)
+            const dhakaToday = new Date().toLocaleDateString("en-CA", {
+                timeZone: "Asia/Dhaka",
+            })
 
-            setMinDate(
-                tomorrow.toLocaleDateString("en-CA", {
-                    timeZone: "Asia/Dhaka",
-                })
-            )
+            const [y, m, d] = dhakaToday.split("-").map(Number)
+            const tomorrow = new Date(Date.UTC(y, m - 1, d + 1))
+            const dhakaTomorrow = tomorrow.toISOString().slice(0, 10)
+
+            setToday(dhakaToday)
+            setMinDate(dhakaTomorrow)
         }
 
         updateMinDate()
@@ -76,6 +79,11 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
 
         return () => clearInterval(interval)
     }, [])
+
+
+    const eventDate = event.date
+    const isPassedEvent = !today || eventDate < today
+
 
 
     const router = useRouter()
@@ -131,7 +139,10 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
         <Dialog open={open} onOpenChange={setOpen}>
 
             <DialogTrigger render={
-                <button className="w-full rounded-lg bg-blue-600  dark:bg-amber-600 cursor-pointer px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 sm:w-auto">
+                <button
+                    disabled={isPassedEvent}
+                    className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-amber-50 disabled:text-gray-400 disabled:hover:bg-amber-50 disabled:dark:bg-gray-500 disabled:dark:text-gray-700 dark:bg-amber-600 dark:hover:bg-amber-700 dark:disabled:bg-amber-50 dark:disabled:text-gray-400 sm:w-auto"
+                >
                     Update Event
                 </button>
             }
