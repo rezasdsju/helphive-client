@@ -2,18 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineUpcoming } from "react-icons/md";
-import AuthPopover from "./AuthPopover";
 import { authClient } from "@/lib/auth-client";
 import ProfileMenuPopOver from "./ProfileMenuPopOver";
 import ThemeToggle from "./ThemeToggle";
-
-
+import useSignOut from "@/hooks/useSignOut";
 
 
 const Navbar = () => {
-    const { data: session } = authClient.useSession()
-    // console.log(session)
+    const { data: session, isPending } = authClient.useSession()
     const user = session?.user
+    const { handleSignOut, isSigningOut } = useSignOut()
+    
     return (
         <nav className="sticky top-0 z-50 bg-white dark:bg-gray-950 border-b border-border shadow py-2 ">
             <div className="grid grid-cols-3 items-center  w-full max-w-6xl  mx-auto px-2">
@@ -53,28 +52,37 @@ const Navbar = () => {
                     <ThemeToggle></ThemeToggle>
                     <div>
                         {
-                            user ?
+                            isPending ?
+                                <div className="size-10"></div> :
                                 <div>
-                                    <ProfileMenuPopOver user={user} />
-                                </div> :
-                                <div>
-                                    <div className="hidden sm:flex items-center justify-center gap-2">
-                                        <Link href={`/signin`}>
-                                            <button className="rounded-md border border-gray-300 px-6 py-2.5 text-sm font-semibold text-foreground transition hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer">
-                                                Sign In
-                                            </button>
-                                        </Link>
+                                    {
+                                        user ?
+                                            <div className="flex items-center justify-center gap-2">
 
-                                        <Link href={`/signup`}>
-                                            <button className="rounded-md bg-amber-300 text-gray-900 px-6 py-2.5 text-sm font-semibold  transition hover:bg-amber-500 cursor-pointer">
-                                                Sign Up
-                                            </button>
-                                        </Link>
-                                    </div>
+                                                <div>
+                                                    <ProfileMenuPopOver user={user} />
+                                                </div>
 
-                                    <div className="flex items-center justify-end gap-2 sm:hidden">
-                                        <AuthPopover />
-                                    </div>
+
+
+                                                <button onClick={handleSignOut} disabled={isSigningOut}
+                                                    className="hidden sm:flex rounded-md bg-white dark:bg-slate-800 text-red-500 px-6 py-2.5 text-sm font-semibold   transition hover:bg-amber-100 dark:hover:bg-slate-700 cursor-pointer border border-red-300 dark:border-gray-600">
+                                                    Logout
+                                                </button>
+
+                                            </div>
+                                            :
+                                            <div>
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <Link href={`/signin`}>
+                                                        <button className="rounded-md bg-amber-300 dark:bg-amber-400 border border-gray-300 px-4 py-2 min-[420px]:px-6 min-[420px]:py-2.5  text-sm font-semibold text-slate-700 transition hover:bg-amber-400 dark:hover:bg-amber-500 cursor-pointer">
+                                                            Login
+                                                        </button>
+                                                    </Link>
+
+                                                </div>
+                                            </div>
+                                    }
                                 </div>
                         }
                     </div>
