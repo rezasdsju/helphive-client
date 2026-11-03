@@ -1,14 +1,13 @@
 
 import getTokenFromServer from "@/lib/getTokenFromServer";
 import { IEvent } from "@/types/event.types";
-import { redirect } from "next/navigation";
 import JoinedEvents from "@/components/events/JoinedEvents";
 
 
 const JoinedEventPage = async () => {
     const token = await getTokenFromServer()
     if (!token) {
-        redirect('/signin')
+        return
     }
     // console.log(token)
 

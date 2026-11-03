@@ -7,7 +7,7 @@ const ManageEventsPage = async () => {
     const token = await getTokenFromServer()
     // console.log(token)
     if (!token) {
-        redirect('/signin')
+        return
     }
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/manage-events/`, {
         headers: {
