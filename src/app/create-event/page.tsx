@@ -24,41 +24,35 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
 import getTokenFromClient from "@/lib/getTokenFromClient"
 import React, { useEffect, useState } from "react"
-
-
-
-
+import { useRouter } from "next/navigation"
 import { eventCategories } from "@/lib/eventCategories"
 
 
 const CreateEventPage = () => {
 
   const [minDate, setMinDate] = useState("")
-  
-    useEffect(() => {
-        const updateMinDate = () => {
-            const dhakaToday = new Date().toLocaleDateString("en-CA", {
-                timeZone: "Asia/Dhaka",
-            })
 
-            const [y, m, d] = dhakaToday.split("-").map(Number)
-            const tomorrow = new Date(Date.UTC(y, m - 1, d + 1))
-            const dhakaTomorrow = tomorrow.toISOString().slice(0, 10)
+  useEffect(() => {
+    const updateMinDate = () => {
+      const dhakaToday = new Date().toLocaleDateString("en-CA", {
+        timeZone: "Asia/Dhaka",
+      })
 
-         
-            setMinDate(dhakaTomorrow)
-        }
+      const [y, m, d] = dhakaToday.split("-").map(Number)
+      const tomorrow = new Date(Date.UTC(y, m - 1, d + 1))
+      const dhakaTomorrow = tomorrow.toISOString().slice(0, 10)
+      setMinDate(dhakaTomorrow)
+    }
 
-        updateMinDate()
-
-        const interval = setInterval(updateMinDate, 10 * 60 * 1000)
-
-        return () => clearInterval(interval)
-    }, [])
+    updateMinDate()
+    const interval = setInterval(updateMinDate, 10 * 60 * 1000)
+    return () => clearInterval(interval)
+  }, [])
 
 
 
 
+  const router = useRouter()
 
 
 
@@ -66,20 +60,21 @@ const CreateEventPage = () => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const eventData = Object.fromEntries(formData.entries())
-    // console.log(eventData)
 
     const newEventData = {
       ...eventData,
       maxParticipants: Number(eventData.maxParticipants),
       participants: [],
-      createdAt: new Date().toISOString()
-
+      createdAt: new Date().toISOString(),
+      // *****NOTE(createdBy)***** created owner will be verified in backend and then will be saved to Database 
+      // *** To avoid duplication 'createdBy'{id,name,email} has not been sent from client.***
     }
-    // console.log(newEventData)
+
 
 
     const jwtToken = await getTokenFromClient()
     if (!jwtToken) return
+
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
       method: "POST",
@@ -106,6 +101,7 @@ const CreateEventPage = () => {
         description: "You have created event successfully!",
         priority: 'high'
       })
+      setTimeout(() => router.push("/upcoming-events"), 1500)
     }
 
   }
