@@ -26,6 +26,8 @@ import getTokenFromClient from "@/lib/getTokenFromClient"
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { eventCategories } from "@/lib/eventCategories"
+import { authClient } from "@/lib/auth-client"
+import { Skeleton } from "@/components/ui/skeleton"
 
 
 const CreateEventPage = () => {
@@ -54,7 +56,27 @@ const CreateEventPage = () => {
 
   const router = useRouter()
 
+  const { data: session, isPending } = authClient.useSession()
+  const user = session?.user
 
+  useEffect(() => {
+    if (!isPending && !user) {
+      router.push("/signin")
+    }
+  }, [isPending, user, router])
+
+  if (isPending) {
+    return (
+      <div className="flex items-center gap-4">
+        <Skeleton className="h-12 w-12 rounded-full" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-[80%]" />
+        </div>
+      </div>
+    )
+  }
+  if (!user) return null
 
   const handleCreateEvent = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -66,8 +88,14 @@ const CreateEventPage = () => {
       maxParticipants: Number(eventData.maxParticipants),
       participants: [],
       createdAt: new Date().toISOString(),
-      // *****NOTE(createdBy)***** created owner will be verified in backend and then will be saved to Database 
-      // *** To avoid duplication 'createdBy'{id,name,email} has not been sent from client.***
+      createdBy: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      },
+      // ***NOTE(createdBy)***created owner will be verified in backend and then will be saved to Database
+      // to fullfill assignment requirements I added createdBy here. but it will not be used. createdBy will be generated in backend
+
     }
 
 
