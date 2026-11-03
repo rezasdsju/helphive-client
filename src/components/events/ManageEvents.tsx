@@ -78,23 +78,23 @@ const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent)
                 <div className="grid grid-cols-3 gap-3 sm:gap-5">
 
                     <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3">
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Total Joined</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Total Created</p>
                         <p className="text-xl font-bold text-gray-900 dark:text-white">
-                            {22}
+                            {createdAllEvents.length}
                         </p>
                     </div>
 
                     <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3">
                         <p className="text-xs text-gray-500 dark:text-gray-400">Upcoming</p>
                         <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
-                            {22}
+                            {createdUpcomingEvents.length}
                         </p>
                     </div>
 
                     <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3">
                         <p className="text-xs text-gray-500 dark:text-gray-400">Past Events</p>
                         <p className="text-xl font-bold text-gray-600 dark:text-gray-300">
-                            {22}
+                            {createdAllEvents.length-createdUpcomingEvents.length}
                         </p>
                     </div>
 
