@@ -1,27 +1,22 @@
 import EventDetail from "@/components/events/EventDetail";
-import { toast } from "@/components/ui/toast";
 import { IEvent } from "@/types/event.types";
+import { notFound } from "next/navigation";
 
 
 
-const EventDetailPage = async({params}:{params:{id:string}}) => {
-    const {id} = await params
+const EventDetailPage = async ({ params }: {params: Promise<{ id: string }>}) => {
+    const { id } = await params
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/upcoming-events/${id}`)
-    if (!res.ok){
-        toast.add({
-            type:'error',
-            description:'Failed to Fetch Event Detail',
-            priority:'high'
-        })
-        return
+    if (!res.ok) {
+        notFound()
     }
 
-    const event:IEvent = await res.json()
+    const event: IEvent = await res.json()
     // console.log(event)
     return (
         <div>
             <div>
-                <EventDetail event={event}/>
+                <EventDetail event={event} />
             </div>
         </div>
     );
