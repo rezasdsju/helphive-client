@@ -32,7 +32,7 @@ const UpcomingEventsSectionIntro = ({ items, filteredEvents, setValueOfEventCate
                 <p className="mb-2 text-sm font-semibold text-card-foreground">Filter</p>
                 <FilterUpcomingEvents items={items} setValueOfEventCategorySelected={setValueOfEventCategorySelected} />
                 <p className="mt-3 text-xs text-muted-foreground sm:text-sm">
-                    {filteredEvents.length} upcoming events found
+                    {filteredEvents.length} events found
                 </p>
             </div>
         </div>
