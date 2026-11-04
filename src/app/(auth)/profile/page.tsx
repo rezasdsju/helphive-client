@@ -8,6 +8,8 @@ import {
 import { toast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client"
 import ProfileUpdateDialog from "@/components/profile/ProfileUpdateDialog";
+import Link from "next/link";
+import { LuChevronRight } from "react-icons/lu";
 
 
 
@@ -36,6 +38,17 @@ const page = () => {
     }
     return (
         <div className="mx-auto w-full max-w-3xl px-4 py-12">
+            <div>
+                <div className="mb-5 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+                    <Link href="/" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
+                        Home
+                    </Link>
+                    <LuChevronRight size={14} />
+                    <Link href="/profile" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
+                        Profile
+                    </Link>
+                </div>
+            </div>
             <div className="mb-8">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     My Profile
