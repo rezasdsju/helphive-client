@@ -20,7 +20,8 @@ HelpHive is a people-powered social development platform that connects individua
 
 - Email and password authentication with Google sign-in
 - Event creation for authenticated users with JWT-based authorization
-- Public upcoming events page with individual event details and category-based filtering
+- Public upcoming events page with individual event details and category-based filtering.
+- Disable fetch caching using `cache: "no-store"` to ensure newly created events appear immediately on the upcoming events page.
 - JWT-protected event participation with duplicate join prevention
 - JWT-protected joined events page with filters for all and upcoming events
 - JWT-protected event management page to view created events, update event details, and delete events
