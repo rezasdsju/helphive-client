@@ -13,14 +13,15 @@ import React from "react"
 const items = [
   { label: "All Events", value: "all_events" },
   { label: "Upcoming Events", value: "upcoming_events" },
+  { label: "Past Events", value: "past_events" },
 ]
-interface IFilterJoinEvents{
-    setValueOfEventSelected: React.Dispatch<React.SetStateAction<string>>
+interface IFilterJoinEvents {
+  setValueOfEventSelected: React.Dispatch<React.SetStateAction<string>>
 }
-export default function FilterJoinedEvents({setValueOfEventSelected}:IFilterJoinEvents) {
-    
-    return (
-    <Select onValueChange={(value)=>setValueOfEventSelected(value as string)} items={items} defaultValue="all_events">
+export default function FilterJoinedEvents({ setValueOfEventSelected }: IFilterJoinEvents) {
+
+  return (
+    <Select onValueChange={(value) => setValueOfEventSelected(value as string)} items={items} defaultValue="all_events">
       <SelectTrigger className="w-full max-w-48">
         <SelectValue />
       </SelectTrigger>

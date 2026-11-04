@@ -17,6 +17,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import ManageEventCarouselCard from "./ManageEventCarouselCard";
+import NoEventToManage from "./NoEventToManage";
 
 
 interface IManageEvent {
@@ -25,6 +26,7 @@ interface IManageEvent {
 }
 const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent) => {
     const [valueOfEventSelected, setValueOfEventSelected] = useState('all_events')
+    const createdPastEvents = createdAllEvents.filter((event) => !createdUpcomingEvents.some(upcoming_event => event._id === upcoming_event._id))
 
     return (
         <div className="mx-auto my-5 w-full max-w-6xl px-3 sm:my-10 sm:px-5">
@@ -94,7 +96,7 @@ const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent)
                     <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3">
                         <p className="text-xs text-gray-500 dark:text-gray-400">Past Events</p>
                         <p className="text-xl font-bold text-gray-600 dark:text-gray-300">
-                            {createdAllEvents.length-createdUpcomingEvents.length}
+                            {createdPastEvents.length}
                         </p>
                     </div>
 
@@ -121,54 +123,86 @@ const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent)
             <div>
                 {
                     valueOfEventSelected === 'all_events' ?
-                        <div>
-                            <div className="hidden  min-[350px]:grid min-[350px]:grid-cols-2 sm:grid-cols-1 gap-2">
-                                {
-                                    createdAllEvents.map((event) =>
-                                        <ManageEventCard key={event._id} event={event} />
-                                    )
-                                }
-                            </div>
-                            <Carousel className="min-[350px]:hidden">
-                                <CarouselContent >
-                                    {createdAllEvents.map((event) =>
-                                        <CarouselItem key={event._id}>
-                                            <ManageEventCarouselCard key={event._id} event={event} />
-                                        </CarouselItem>
-                                    )}
-                                </CarouselContent>
-                                <CarouselPrevious
-                                    className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
-                                />
-                                <CarouselNext
-                                    className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
-                                />
-                            </Carousel>
+                        createdAllEvents.length === 0 ? (
+                            <NoEventToManage value={`all_events`} />
+                        ) :
+                            <div>
+                                <div className="hidden  min-[350px]:grid min-[350px]:grid-cols-2 sm:grid-cols-1 gap-2">
+                                    {
+                                        createdAllEvents.map((event) =>
+                                            <ManageEventCard key={event._id} event={event} />
+                                        )
+                                    }
+                                </div>
+                                <Carousel className="min-[350px]:hidden">
+                                    <CarouselContent >
+                                        {createdAllEvents.map((event) =>
+                                            <CarouselItem key={event._id}>
+                                                <ManageEventCarouselCard key={event._id} event={event} />
+                                            </CarouselItem>
+                                        )}
+                                    </CarouselContent>
+                                    <CarouselPrevious
+                                        className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                    />
+                                    <CarouselNext
+                                        className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                    />
+                                </Carousel>
 
 
-                        </div> :
-                        <div>
-                            <div className="grid grid-cols-1 min-[350px]:grid-cols-2 sm:grid-cols-1 gap-2">
-                                {
-                                    createdUpcomingEvents.map((event) => <ManageEventCard key={event._id} event={event} />)
-                                }
-                            </div>
-                            <Carousel className="min-[350px]:hidden">
-                                <CarouselContent >
-                                    {createdUpcomingEvents.map((event) =>
-                                        <CarouselItem key={event._id}>
-                                            <ManageEventCarouselCard key={event._id} event={event} />
-                                        </CarouselItem>
-                                    )}
-                                </CarouselContent>
-                                <CarouselPrevious
-                                    className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
-                                />
-                                <CarouselNext
-                                    className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
-                                />
-                            </Carousel>
-                        </div>
+                            </div> :
+                        valueOfEventSelected === 'upcoming_events' ?
+                            createdUpcomingEvents.length === 0 ? (
+                                <NoEventToManage value={`upcoming_events`} />
+                            ) :
+                                <div>
+                                    <div className="hidden min-[350px]:grid min-[350px]:grid-cols-2 sm:grid-cols-1 gap-2">
+                                        {
+                                            createdUpcomingEvents.map((event) => <ManageEventCard key={event._id} event={event} />)
+                                        }
+                                    </div>
+                                    <Carousel className="min-[350px]:hidden">
+                                        <CarouselContent >
+                                            {createdUpcomingEvents.map((event) =>
+                                                <CarouselItem key={event._id}>
+                                                    <ManageEventCarouselCard key={event._id} event={event} />
+                                                </CarouselItem>
+                                            )}
+                                        </CarouselContent>
+                                        <CarouselPrevious
+                                            className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                        />
+                                        <CarouselNext
+                                            className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                        />
+                                    </Carousel>
+                                </div> :
+                            createdPastEvents.length === 0 ? (
+                                <NoEventToManage value="past_events" />
+                            ) :
+                                <div>
+                                    <div className="hidden min-[350px]:grid min-[350px]:grid-cols-2 sm:grid-cols-1 gap-2">
+                                        {
+                                            createdPastEvents.map((event) => <ManageEventCard key={event._id} event={event} />)
+                                        }
+                                    </div>
+                                    <Carousel className="min-[350px]:hidden">
+                                        <CarouselContent >
+                                            {createdPastEvents.map((event) =>
+                                                <CarouselItem key={event._id}>
+                                                    <ManageEventCarouselCard key={event._id} event={event} />
+                                                </CarouselItem>
+                                            )}
+                                        </CarouselContent>
+                                        <CarouselPrevious
+                                            className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                        />
+                                        <CarouselNext
+                                            className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                        />
+                                    </Carousel>
+                                </div>
                 }
             </div>
         </div>
