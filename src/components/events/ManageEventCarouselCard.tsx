@@ -38,7 +38,7 @@ const ManageEventCarouselCard = ({ event }: { event: IEvent }) => {
                     <CiCalendarDate className="shrink-0" />
                     <span className="truncate">
                         {(() => {
-                            const [day, month, year] = event.date.split('-');
+                            const [year, month, day] = event.date.split('-');
                             return `${day}-${month}-${year}`;
                         })()}
                     </span>
