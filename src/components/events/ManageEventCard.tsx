@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FiMapPin, FiUsers } from "react-icons/fi";
 import UpdateEventDialog from "./UpdateEventDialog";
 import DeleteEventDialog from "./DeleteEventDialog";
+import { CiCalendarDate } from "react-icons/ci";
 
 const ManageEventCard = ({ event }: { event: IEvent }) => {
     return (
@@ -34,6 +35,11 @@ const ManageEventCard = ({ event }: { event: IEvent }) => {
                             <FiMapPin className="shrink-0" />
                             <span className="truncate">{event.location}</span>
                         </span>
+                        <span className="flex min-w-0 items-center gap-1.5">
+                            <CiCalendarDate className="shrink-0"/>
+                            <span className="truncate">{event.date}</span>
+                        </span>
+
                         <span className="flex items-center gap-1.5">
                             <FiUsers className="shrink-0" />
                             <span>{event.participants.length} participants</span>
