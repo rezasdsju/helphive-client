@@ -255,7 +255,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                                             id="date"
                                             type="date"
                                             min={event.date === today ? today : (minDate || undefined)}
-                                            placeholder={event.date}
+                                            defaultValue={event.date}
                                             required
                                         />
                                     </Field>
