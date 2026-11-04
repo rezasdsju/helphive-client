@@ -50,7 +50,7 @@ const Footer = () => {
                             </h2>
                             <div className="flex flex-col gap-3 text-sm">
                                 <Link href="/" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Home</Link>
-                                <Link href="#" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Events</Link>
+                                <Link href="/upcoming-events" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Events</Link>
                                 <Link href="#" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Volunteer</Link>
                                 <Link href="#" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">About</Link>
                                 <Link href="#" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Contact</Link>
