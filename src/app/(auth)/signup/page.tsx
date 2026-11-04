@@ -68,7 +68,7 @@ const SignUpPage = () => {
                 description: "Your account has been created successfully!",
                 priority: "high",
             });
-            setTimeout(() => router.replace('/signin'), 1500)
+            setTimeout(() => router.replace('/'), 1500)
         }
     }
 
