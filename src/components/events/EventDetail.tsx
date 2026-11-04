@@ -26,7 +26,7 @@ const EventDetail = ({ event }: { event: IEvent }) => {
 
     const router = useRouter()
 
-    const { data: session } = authClient.useSession()
+    const { data: session, isPending } = authClient.useSession()
     const user: IUser = session?.user
 
 
@@ -35,6 +35,7 @@ const EventDetail = ({ event }: { event: IEvent }) => {
 
 
     const handleJoinEvent = async () => {
+        if (isPending) return
         if (!user) {
             toast.add({
                 type: 'error',
@@ -182,12 +183,12 @@ const EventDetail = ({ event }: { event: IEvent }) => {
                         <button
                             onClick={handleJoinEvent}
                             type="button"
-                            disabled={isFull || alreadyJoined}
+                            disabled={isPending || isFull || alreadyJoined}
                             className="w-full cursor-pointer rounded-xl bg-amber-500 px-6 py-3 font-bold text-white shadow-sm transition-all duration-200 hover:bg-amber-600 hover:shadow-md active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
                         >
-                            {isFull ? "Event Full" : alreadyJoined ? "Already Joined" : "Join Event"}
+                            {isPending ? 'Checking Session...' : isFull ? "Event Full" : alreadyJoined ? "Already Joined" : "Join Event"}
                         </button>
-                        {(!isFull || alreadyJoined) && (
+                        {(!isFull) && (
                             <p className="mt-2 text-center text-xs text-muted-foreground">
                                 {spotsLeft} {spotsLeft === 1 ? "spot" : "spots"} left
                             </p>
