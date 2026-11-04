@@ -38,20 +38,7 @@ import { useRouter } from "next/navigation"
 
 
 
-const eventTypes = [
-    { value: "Clothes Distribution", label: "Clothes Distribution" },
-    { value: "Food Distribution", label: "Food Distribution" },
-    { value: "Blanket Distribution", label: "Blanket Distribution" },
-    { value: "Community Support", label: "Community Support" },
-    { value: "Environment", label: "Environment" },
-    { value: "Cleanup", label: "Cleanup" },
-    { value: "Health Camp", label: "Health Camp" },
-    { value: "Blood Donation", label: "Blood Donation" },
-    { value: "Plantation", label: "Plantation" },
-    { value: "Education", label: "Education" },
-    { value: "Other", label: "Other" },
-]
-
+import { eventCategories } from "@/lib/eventCategories"
 
 
 
@@ -81,8 +68,8 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
     }, [])
 
 
-    const eventDate = event.date
-    const isPassedEvent = !today || eventDate < today
+    // const eventDate = event.date
+    // const isPassedEvent = !today || eventDate < today
 
 
 
@@ -105,7 +92,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
             return
 
         }
-        // console.log(token)
+    
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/manage-events/${event._id}`, {
             method: "PATCH",
@@ -140,7 +127,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
 
             <DialogTrigger render={
                 <button
-                    disabled={isPassedEvent}
+                    // disabled={isPassedEvent}
                     className="w-full rounded-lg bg-amber-300 px-4 py-2 text-sm font-medium text-slate-700 cursor-pointer transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:bg-amber-50 disabled:text-gray-400 disabled:hover:bg-amber-50 disabled:dark:bg-gray-500 disabled:dark:text-gray-700 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-800 dark:disabled:bg-amber-50 dark:disabled:text-gray-400 sm:w-auto"
                 >
                     Update Event
@@ -201,13 +188,13 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                                         <FieldLabel htmlFor="type">
                                             Event Type<span className="text-destructive">*</span>
                                         </FieldLabel>
-                                        <Select name="type" items={eventTypes} required defaultValue={event.type}>
+                                        <Select name="type" items={eventCategories} required defaultValue={event.type}>
                                             <SelectTrigger id="type" className={`w-full`}>
                                                 <SelectValue placeholder={`Select Event Type`} />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    {eventTypes.map((item) => (
+                                                    {eventCategories.map((item) => (
                                                         <SelectItem key={item.value} value={item.value}>
                                                             {item.label}
                                                         </SelectItem>
@@ -260,7 +247,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                                             name="date"
                                             id="date"
                                             type="date"
-                                            min={minDate || undefined}
+                                            min={event.date===today? today :(minDate || undefined)}
                                             defaultValue={event.date}
                                             required
                                         />
