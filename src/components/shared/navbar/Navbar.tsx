@@ -15,7 +15,7 @@ const Navbar = () => {
     
     return (
         <nav className="sticky top-0 z-50 bg-white dark:bg-gray-950 border-b border-border shadow py-2 ">
-            <div className="grid grid-cols-3 items-center  w-full max-w-6xl  mx-auto px-2">
+            <div className="grid grid-cols-3 items-center  w-full max-w-7xl  mx-auto px-2 md:px-4">
                 <Link href="/">
                     <>
                         <Image
