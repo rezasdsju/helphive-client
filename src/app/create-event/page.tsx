@@ -31,6 +31,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 
 const CreateEventPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const [minDate, setMinDate] = useState("")
 
@@ -80,57 +81,74 @@ const CreateEventPage = () => {
 
   const handleCreateEvent = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const eventData = Object.fromEntries(formData.entries())
+    if (isSubmitting) return
+    setIsSubmitting(true)
+    let isCreated = false
+    try {
+      const formData = new FormData(e.currentTarget)
+      const eventData = Object.fromEntries(formData.entries())
 
-    const newEventData = {
-      ...eventData,
-      maxParticipants: Number(eventData.maxParticipants),
-      participants: [],
-      createdAt: new Date().toISOString(),
-      createdBy: {
-        id: user.id,
-        name: user.name,
-        email: user.email
-      },
-      // ***NOTE(createdBy)***created owner will be verified in backend and then will be saved to Database
-      // createdBy added here. but it will not be used. createdBy will be generated in backend
+      const newEventData = {
+        ...eventData,
+        maxParticipants: Number(eventData.maxParticipants),
+        participants: [],
+        createdAt: new Date().toISOString(),
+        createdBy: {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        },
+        // ***NOTE(createdBy)***created owner will be verified in backend and then will be saved to Database
+        // createdBy added here. but it will not be used. createdBy will be generated in backend
 
-    }
-
-
-
-    const jwtToken = await getTokenFromClient()
-    if (!jwtToken) return
+      }
 
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${jwtToken}`
-      },
-      body: JSON.stringify(newEventData),
-    })
-    if (!res.ok || res.status === 500 || res.status === 400) {
+
+      const jwtToken = await getTokenFromClient()
+      if (!jwtToken) return
+
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/create-event`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${jwtToken}`
+        },
+        body: JSON.stringify(newEventData),
+      })
+      if (!res.ok || res.status === 500 || res.status === 400) {
+        toast.add({
+          type: "error",
+          description: "An error occurred in creating event.",
+          priority: 'high'
+        })
+        return
+      }
+      const result = await res.json()
+      // console.log(result)
+
+      if (result.acknowledged) {
+        isCreated = true 
+        toast.add({
+          type: "success",
+          description: "You have created event successfully!",
+          priority: 'high'
+        })
+        setTimeout(() => router.push("/upcoming-events"), 1500)
+      }
+    } catch (error) {
       toast.add({
         type: "error",
         description: "An error occurred in creating event.",
-        priority: 'high'
+        priority: "high",
       })
-      return
+    } finally {
+      if (!isCreated) {
+        setIsSubmitting(false)
+      }
     }
-    const result = await res.json()
-    // console.log(result)
 
-    if (result.acknowledged) {
-      toast.add({
-        type: "success",
-        description: "You have created event successfully!",
-        priority: 'high'
-      })
-      setTimeout(() => router.push("/upcoming-events"), 1500)
-    }
 
   }
 
@@ -262,8 +280,14 @@ const CreateEventPage = () => {
             </FieldSet>
             <FieldSeparator />
             <Field orientation="horizontal">
-              <Button type="submit">Submit</Button>
-              <Button variant="outline" type="reset">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className={`cursor-pointer`}
+              >
+                {isSubmitting ? "Creating..." : "Submit"}
+              </Button>
+              <Button variant="outline" type="reset" className={`cursor-pointer`}>
                 Reset
               </Button>
             </Field>
