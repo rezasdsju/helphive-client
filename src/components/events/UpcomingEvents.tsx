@@ -7,7 +7,8 @@ import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
 
 import { eventCategories } from "@/lib/eventCategories";
-const items = [{ label: "All Categories", value: "all_categories" },...eventCategories]
+import NoUpcomingEvents from "./NoUpcomingEvents";
+const items = [{ label: "All Categories", value: "all_categories" }, ...eventCategories]
 
 const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
     const [valueOfEventCategorySelected, setValueOfEventCategorySelected] = useState('all_categories')
@@ -41,11 +42,18 @@ const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
                 <UpcomingEventsSectionIntro items={items} filteredEvents={filteredEvents} setValueOfEventCategorySelected={setValueOfEventCategorySelected} />
 
 
-                <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-1 min-[360px]:gap-2 sm:gap-4">
+                <div >
                     {
-                        filteredEvents.map((event: IEvent) => <UpcomingEventCard key={event._id} event={event} />)
+                        filteredEvents.length === 0 ?
+                            <NoUpcomingEvents /> :
+                            <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-1 min-[360px]:gap-2 sm:gap-4">
+                                {
+                                    filteredEvents.map((event: IEvent) => <UpcomingEventCard key={event._id} event={event} />)
 
+                                }
+                            </div>
                     }
+
                 </div>
 
             </div>
