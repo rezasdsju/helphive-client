@@ -134,7 +134,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
 
             <DialogTrigger render={
                 <button
-                    disabled={isSubmit}
+                    
                     className="w-full rounded-lg bg-amber-300 px-4 py-2 text-sm font-medium text-slate-700 cursor-pointer transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:bg-amber-50 disabled:text-gray-400 disabled:hover:bg-amber-50 disabled:dark:bg-gray-500 disabled:dark:text-gray-700 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-800 dark:disabled:bg-amber-50 dark:disabled:text-gray-400 sm:w-auto"
                 >
                     Update Event
@@ -255,7 +255,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                                             id="date"
                                             type="date"
                                             min={event.date === today ? today : (minDate || undefined)}
-                                            defaultValue={event.date}
+                                            placeholder={event.date}
                                             required
                                         />
                                     </Field>
@@ -281,7 +281,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                             </FieldSet>
                             <FieldSeparator />
                             <Field orientation="horizontal">
-                                <Button type="submit" className='cursor-pointer'>Submit</Button>
+                                <Button type="submit" className='cursor-pointer' disabled={isSubmit}>Submit</Button>
                                 {/* <Button variant="outline" type="reset">
                                     Reset
                                 </Button> */}
