@@ -36,7 +36,15 @@ const ManageEventCarouselCard = ({ event }: { event: IEvent }) => {
                 </div>
                 <span className="flex min-w-0 items-center gap-1.5 text-xs text-gray-500">
                     <CiCalendarDate className="shrink-0" />
-                    <span className="truncate">{event.date}</span>
+                    <span className="truncate">
+                        {
+                            new Date(event.date).toLocaleDateString('en-GB', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric'
+                            })
+                        }
+                    </span>
                 </span>
                 <div className="flex items-center gap-1.5 text-xs text-gray-500">
                     <FiUsers className="shrink-0" />

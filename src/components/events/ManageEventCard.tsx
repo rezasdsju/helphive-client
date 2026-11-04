@@ -36,8 +36,15 @@ const ManageEventCard = ({ event }: { event: IEvent }) => {
                             <span className="truncate">{event.location}</span>
                         </span>
                         <span className="flex min-w-0 items-center gap-1.5">
-                            <CiCalendarDate className="shrink-0"/>
-                            <span className="truncate">{event.date}</span>
+                            <CiCalendarDate className="shrink-0" />
+                            <span className="truncate">
+                                {
+                                    new Date(event.date).toLocaleDateString('en-GB', {
+                                        day: '2-digit',
+                                        month: '2-digit',
+                                        year: 'numeric'
+                                    })
+                                }</span>
                         </span>
 
                         <span className="flex items-center gap-1.5">
