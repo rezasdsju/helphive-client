@@ -11,6 +11,7 @@ import NoUpcomingEvents from "./NoUpcomingEvents";
 const items = [{ label: "All Categories", value: "all_categories" }, ...eventCategories]
 
 const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
+    const [searchedText, setSearchedText] = useState('')
     const [valueOfEventCategorySelected, setValueOfEventCategorySelected] = useState('all_categories')
     const filteredEvents = events.filter((event) => {
         if (valueOfEventCategorySelected === 'all_categories') {
@@ -21,6 +22,8 @@ const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
         })
         return event.type === selectedCategory?.label
     })
+
+    const searchedEvents = filteredEvents.filter(event=>event.title.toLocaleLowerCase().includes(searchedText.toLocaleLowerCase()))
     return (
 
         <div>
@@ -39,16 +42,16 @@ const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
                         </Link>
                     </div>
                 </div>
-                <UpcomingEventsSectionIntro items={items} filteredEvents={filteredEvents} setValueOfEventCategorySelected={setValueOfEventCategorySelected} />
+                <UpcomingEventsSectionIntro searchedEvents={searchedEvents} setSearchedText={setSearchedText} items={items} setValueOfEventCategorySelected={setValueOfEventCategorySelected} />
 
 
                 <div >
                     {
-                        filteredEvents.length === 0 ?
+                        searchedEvents.length === 0 ?
                             <NoUpcomingEvents /> :
                             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-1 min-[360px]:gap-2 sm:gap-4">
                                 {
-                                    filteredEvents.map((event: IEvent) => <UpcomingEventCard key={event._id} event={event} />)
+                                    searchedEvents.map((event: IEvent) => <UpcomingEventCard key={event._id} event={event} />)
 
                                 }
                             </div>

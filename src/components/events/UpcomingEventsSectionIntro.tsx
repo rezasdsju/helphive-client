@@ -1,7 +1,7 @@
 import { IEvent } from "@/types/event.types";
 import React from "react";
 import FilterUpcomingEvents from "./FilterUpcomingEvents";
-
+import { Input } from "@/components/ui/input"
 
 
 
@@ -10,11 +10,12 @@ interface IItem {
     value: string
 }
 interface IUpcomingEventsSectionIntro {
-    filteredEvents: IEvent[],
+    searchedEvents: IEvent[],
+    setSearchedText: React.Dispatch<React.SetStateAction<string>>,
     setValueOfEventCategorySelected: React.Dispatch<React.SetStateAction<string>>,
     items: IItem[]
 }
-const UpcomingEventsSectionIntro = ({ items, filteredEvents, setValueOfEventCategorySelected }: IUpcomingEventsSectionIntro) => {
+const UpcomingEventsSectionIntro = ({searchedEvents, setSearchedText, items,  setValueOfEventCategorySelected }: IUpcomingEventsSectionIntro) => {
     return (
         <div className="mb-6 grid grid-cols-1 items-end gap-6 sm:mb-8 sm:grid-cols-2 sm:gap-8">
             <div>
@@ -29,11 +30,30 @@ const UpcomingEventsSectionIntro = ({ items, filteredEvents, setValueOfEventCate
             </div>
 
             <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:ml-auto sm:w-full sm:max-w-sm">
-                <p className="mb-2 text-sm font-semibold text-card-foreground">Filter</p>
-                <FilterUpcomingEvents items={items} setValueOfEventCategorySelected={setValueOfEventCategorySelected} />
-                <p className="mt-3 text-xs text-muted-foreground sm:text-sm">
-                    {filteredEvents.length} events found
-                </p>
+                <div className="mb-5">
+                    <Input
+                        onChange={(e)=>setSearchedText(e.target.value)}
+                        placeholder="Search events..."
+                        className="h-10"
+                    />
+                </div>
+
+                <div>
+                    <p className="mb-3 text-sm font-semibold text-card-foreground">
+                        Filter by Category
+                    </p>
+
+                    <FilterUpcomingEvents
+                        items={items}
+                        setValueOfEventCategorySelected={setValueOfEventCategorySelected}
+                    />
+
+                    <div className="mt-4 border-t border-border pt-3">
+                        <p className="text-xs text-muted-foreground">
+                            {searchedEvents.length} events found
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );
