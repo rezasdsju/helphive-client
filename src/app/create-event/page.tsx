@@ -28,7 +28,8 @@ import { useRouter } from "next/navigation"
 import { eventCategories } from "@/lib/eventCategories"
 import { authClient } from "@/lib/auth-client"
 import { Skeleton } from "@/components/ui/skeleton"
-
+import Link from "next/link"
+import { LuChevronRight } from "react-icons/lu"
 
 const CreateEventPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -129,7 +130,7 @@ const CreateEventPage = () => {
       // console.log(result)
 
       if (result.acknowledged) {
-        isCreated = true 
+        isCreated = true
         toast.add({
           type: "success",
           description: "You have created event successfully!",
@@ -154,6 +155,19 @@ const CreateEventPage = () => {
 
   return (
     <div className="max-w-2xl mx-auto my-10 sm:my-15 px-2">
+
+      <div>
+        <div className="mb-5 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+          <Link href="/" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
+            Home
+          </Link>
+          <LuChevronRight size={14} />
+          <Link href="/create-event" className="transition-colors hover:text-amber-600 dark:hover:text-amber-400">
+            Create Event
+          </Link>
+        </div>
+      </div>
+
       <div >
         <form onSubmit={handleCreateEvent}>
           <FieldGroup>
