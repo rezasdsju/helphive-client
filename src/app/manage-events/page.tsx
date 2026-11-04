@@ -16,9 +16,9 @@ const ManageEventsPage = async () => {
         }
     })
 
-    if (res.status === 401 || res.status === 403) {
-        redirect("/signin")
-    }
+    // if (res.status === 401 || res.status === 403) {
+    //     redirect("/signin")
+    // }
     if (!res.ok) {
         return <ManageEventsError />
     }
