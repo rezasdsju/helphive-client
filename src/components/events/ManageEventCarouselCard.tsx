@@ -42,7 +42,7 @@ const ManageEventCarouselCard = ({ event }: { event: IEvent }) => {
                                 day: '2-digit',
                                 month: '2-digit',
                                 year: 'numeric'
-                            })
+                            }).replaceAll('/', '-')
                         }
                     </span>
                 </span>

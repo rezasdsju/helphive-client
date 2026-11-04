@@ -43,8 +43,9 @@ const ManageEventCard = ({ event }: { event: IEvent }) => {
                                         day: '2-digit',
                                         month: '2-digit',
                                         year: 'numeric'
-                                    })
-                                }</span>
+                                    }).replaceAll('/', '-')
+                                }
+                            </span>
                         </span>
 
                         <span className="flex items-center gap-1.5">
