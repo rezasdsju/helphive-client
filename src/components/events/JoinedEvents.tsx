@@ -5,12 +5,15 @@ import FilterJoinedEvents from "./FilterJoinedEvents";
 import { IEvent } from "@/types/event.types";
 import JoinedEventCard from "./JoinedEventCard";
 import { useState } from "react";
+import NoJoinedStatus from "./NoJoinedStatus";
 
 
 const JoinedEvents = ({ joinedAllEvents, joinedUpcomingEvents }: { joinedAllEvents: IEvent[], joinedUpcomingEvents: IEvent[] }) => {
     const [valueOfEventSelected, setValueOfEventSelected] = useState('all_events')
 
-    const eventPassed = joinedAllEvents.length - joinedUpcomingEvents.length
+
+    const joinedEventPassed = joinedAllEvents.filter((event) => !joinedUpcomingEvents.some(upcoming_event => upcoming_event._id === event._id))
+
     return (
         <div className='px-2 sm:px-5 md:px-10 lg:px-15 my-5 sm:my-10'>
             <div >
@@ -58,7 +61,7 @@ const JoinedEvents = ({ joinedAllEvents, joinedUpcomingEvents }: { joinedAllEven
                         <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Past Events</p>
                             <p className="text-xl font-bold text-gray-600 dark:text-gray-300">
-                                {eventPassed}
+                                {joinedEventPassed.length}
                             </p>
                         </div>
 
@@ -81,16 +84,32 @@ const JoinedEvents = ({ joinedAllEvents, joinedUpcomingEvents }: { joinedAllEven
             <div>
                 {
                     valueOfEventSelected === 'all_events' ?
-                        <div className="flex flex-col gap-5">
-                            {
-                                joinedAllEvents.map((event) => <JoinedEventCard key={event._id} event={event} />)
-                            }
-                        </div> :
-                        <div className="flex flex-col gap-5">
-                            {
-                                joinedUpcomingEvents.map((event) => <JoinedEventCard key={event._id} event={event} />)
-                            }
-                        </div>
+                        joinedAllEvents.length === 0 ? (
+                            <NoJoinedStatus value="all_events" />
+                        ) :
+                            <div className="flex flex-col gap-5">
+                                {
+                                    joinedAllEvents.map((event) => <JoinedEventCard key={event._id} event={event} />)
+                                }
+                            </div> :
+
+                        valueOfEventSelected === 'upcoming_events' ?
+                            joinedUpcomingEvents.length === 0 ? (
+                                <NoJoinedStatus value="upcoming_events" />
+                            ) :
+                                <div className="flex flex-col gap-5">
+                                    {
+                                        joinedUpcomingEvents.map((event) => <JoinedEventCard key={event._id} event={event} />)
+                                    }
+                                </div> :
+                            joinedEventPassed.length === 0 ? (
+                                <NoJoinedStatus value="past_events" />
+                            ) :
+                                <div className="flex flex-col gap-5">
+                                    {
+                                        joinedEventPassed.map((event) => <JoinedEventCard key={event._id} event={event} />)
+                                    }
+                                </div>
 
 
                 }
