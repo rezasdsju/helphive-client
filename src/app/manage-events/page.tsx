@@ -8,9 +8,7 @@ import { redirect } from "next/navigation";
 const ManageEventsPage = async () => {
     const token = await getTokenFromServer()
 
-    if (!token) {
-        redirect("/signin")
-    }
+    if (!token) return
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/manage-events/`, {
         cache: 'no-store',
         headers: {
