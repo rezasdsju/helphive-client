@@ -43,6 +43,7 @@ import { eventCategories } from "@/lib/eventCategories"
 
 
 export default function UpdateEventDialog({ event }: { event: IEvent }) {
+    const [isSubmit, setIsSubmit] = useState(false)
     const [minDate, setMinDate] = useState("")
     const [today, setToday] = useState("")
     const [open, setOpen] = useState(false)
@@ -92,7 +93,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
             return
 
         }
-    
+
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/manage-events/${event._id}`, {
             method: "PATCH",
@@ -117,17 +118,23 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                 description: 'Event updated successfully!',
                 priority: 'high'
             })
+            setIsSubmit(true)
             setOpen(false)
             router.refresh()
             return
         }
     }
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={(value) => {
+            setOpen(value);
+            if (!value) {
+                setIsSubmit(false)
+            }
+        }}>
 
             <DialogTrigger render={
                 <button
-                    // disabled={isPassedEvent}
+                    disabled={isSubmit}
                     className="w-full rounded-lg bg-amber-300 px-4 py-2 text-sm font-medium text-slate-700 cursor-pointer transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:bg-amber-50 disabled:text-gray-400 disabled:hover:bg-amber-50 disabled:dark:bg-gray-500 disabled:dark:text-gray-700 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-800 dark:disabled:bg-amber-50 dark:disabled:text-gray-400 sm:w-auto"
                 >
                     Update Event
@@ -247,7 +254,7 @@ export default function UpdateEventDialog({ event }: { event: IEvent }) {
                                             name="date"
                                             id="date"
                                             type="date"
-                                            min={event.date===today? today :(minDate || undefined)}
+                                            min={event.date === today ? today : (minDate || undefined)}
                                             defaultValue={event.date}
                                             required
                                         />
