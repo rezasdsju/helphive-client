@@ -43,36 +43,58 @@ HelpHive is a people-powered social development platform that connects individua
 - **Theming:** next-themes
 
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 helphive-client/
-├── public/                  # Static assets and images
+├── public/                         # Static assets and images
 ├── src/
-│   ├── app/                 # Next.js App Router pages and layouts
-│   │   ├── (auth)/          # Authentication pages
-│   │   ├── api/             # Authentication API routes
-│   │   ├── create-event/    # Event creation page
-│   │   ├── joined-events/   # Joined events page
-│   │   ├── manage-events/   # Event management page
-│   │   └── upcoming-events/ # Upcoming events and details
+│   ├── app/                        # Next.js App Router pages
+│   │   ├── (auth)/                 # Authentication-related pages
+│   │   │   ├── profile/
+│   │   │   ├── signin/
+│   │   │   └── signup/
+│   │   ├── api/
+│   │   │   └── auth/               # Better Auth API routes
+│   │   ├── create-event/            # Create event page
+│   │   ├── joined-events/           # Joined events page
+│   │   ├── manage-events/           # Manage created events page
+│   │   ├── upcoming-events/         # Upcoming events pages
+│   │   │   └── [id]/               # Event details page
+│   │   ├── globals.css             # Global styles
+│   │   ├── layout.tsx              # Root layout
+│   │   ├── loading.tsx             # Global loading UI
+│   │   ├── not-found.tsx            # Global 404 page
+│   │   └── page.tsx                # Homepage
+│   │
 │   ├── components/
-│   │   ├── events/          # Event-related components
-│   │   ├── homepage/        # Homepage sections
-│   │   ├── profile/         # Profile components
-│   │   ├── providers/       # Application providers
-│   │   ├── shared/          # Shared layout components
-│   │   └── ui/              # Reusable UI components
-│   ├── hooks/               # Custom React hooks
-│   ├── lib/                 # Authentication and utility functions
-│   └── types/               # TypeScript type definitions
-├── .env.local               # Environment variables
-├── components.json          # shadcn/ui configuration
-├── next.config.ts           # Next.js configuration
-├── package.json             # Dependencies and scripts
-├── tsconfig.json            # TypeScript configuration
+│   │   ├── events/                 # Event-related components
+│   │   │   ├── filter-events/
+│   │   │   ├── joined-events/
+│   │   │   ├── manage-events/
+│   │   │   └── upcoming-events/
+│   │   ├── homepage/               # Homepage sections
+│   │   ├── profile/                # Profile components
+│   │   ├── providers/              # Context providers
+│   │   ├── shared/                 # Shared layout components
+│   │   │   ├── footer/
+│   │   │   └── navbar/
+│   │   └── ui/                     # Reusable UI components
+│   │
+│   ├── hooks/                      # Custom React hooks
+│   ├── lib/                        # Utilities and authentication
+│   ├── types/                      # TypeScript type definitions
+│   └── proxy.ts                    # Request proxy configuration
+│
+├── AGENTS.md
+├── components.json
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── tsconfig.json
 └── README.md
 ```
+
 
 ## Getting Started
 
