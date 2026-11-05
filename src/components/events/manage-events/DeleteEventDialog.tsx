@@ -13,7 +13,7 @@ import {
 import getTokenFromClient from "@/lib/getTokenFromClient"
 import { IEvent } from "@/types/event.types"
 import { useState } from "react"
-import { toast } from "../ui/toast"
+import { toast } from "../../ui/toast"
 import { useRouter } from "next/navigation"
 
 export default function DeleteEventDialog({ event }: { event: IEvent }) {

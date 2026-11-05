@@ -2,7 +2,7 @@
 import { IEvent } from "@/types/event.types";
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
-import FilterJoinedEvents from "./FilterManageAndJoinedEvents";
+import FilterJoinedEvents from "../filter-events/FilterManageAndJoinedEvents";
 import ManageEventCard from "./ManageEventCard";
 import { useState } from "react";
 

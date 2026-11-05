@@ -1,4 +1,4 @@
-import ManageEvents from "@/components/events/ManageEvents";
+import ManageEvents from "@/components/events/manage-events/ManageEvents";
 import ManageEventsError from "@/components/events/ManageEventsError";
 import getTokenFromServer from "@/lib/getTokenFromServer";
 import { redirect } from "next/navigation";

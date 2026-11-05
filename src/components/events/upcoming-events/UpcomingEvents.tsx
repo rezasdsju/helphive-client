@@ -7,7 +7,7 @@ import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
 
 import { eventCategories } from "@/lib/eventCategories";
-import NoUpcomingEvents from "./NoUpcomingEvents";
+import NoUpcomingEvents from "../NoUpcomingEvents";
 const items = [{ label: "All Categories", value: "all_categories" }, ...eventCategories]
 
 const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
@@ -23,7 +23,7 @@ const UpcomingEvents = ({ events }: { events: IEvent[] }) => {
         return event.type === selectedCategory?.label
     })
 
-    const searchedEvents = filteredEvents.filter(event=>event.title.toLocaleLowerCase().includes(searchedText.toLocaleLowerCase()))
+    const searchedEvents = filteredEvents.filter(event => event.title.toLocaleLowerCase().includes(searchedText.toLocaleLowerCase()))
     return (
 
         <div>

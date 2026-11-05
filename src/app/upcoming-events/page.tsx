@@ -2,7 +2,7 @@
 
 
 import type { IEvent } from '../../types/event.types'
-import UpcomingEvents from "@/components/events/UpcomingEvents";
+import UpcomingEvents from "@/components/events/upcoming-events/UpcomingEvents";
 import { notFound } from "next/navigation";
 
 const UpComingEventsPage = async () => {

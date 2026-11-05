@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/dialog"
 import React, { useEffect, useState } from "react"
 import getTokenFromClient from "@/lib/getTokenFromClient"
-import { toast } from "../ui/toast"
+import { toast } from "../../ui/toast"
 import { useRouter } from "next/navigation"
 
 

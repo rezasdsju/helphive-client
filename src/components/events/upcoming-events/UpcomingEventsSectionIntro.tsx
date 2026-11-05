@@ -1,6 +1,6 @@
 import { IEvent } from "@/types/event.types";
 import React from "react";
-import FilterUpcomingEvents from "./FilterUpcomingEvents";
+import FilterUpcomingEvents from "../FilterUpcomingEvents";
 import { Input } from "@/components/ui/input"
 
 
@@ -15,7 +15,7 @@ interface IUpcomingEventsSectionIntro {
     setValueOfEventCategorySelected: React.Dispatch<React.SetStateAction<string>>,
     items: IItem[]
 }
-const UpcomingEventsSectionIntro = ({searchedEvents, setSearchedText, items,  setValueOfEventCategorySelected }: IUpcomingEventsSectionIntro) => {
+const UpcomingEventsSectionIntro = ({ searchedEvents, setSearchedText, items, setValueOfEventCategorySelected }: IUpcomingEventsSectionIntro) => {
     return (
         <div className="mb-6 grid grid-cols-1 items-end gap-6 sm:mb-8 sm:grid-cols-2 sm:gap-8">
             <div>
@@ -32,7 +32,7 @@ const UpcomingEventsSectionIntro = ({searchedEvents, setSearchedText, items,  se
             <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:ml-auto sm:w-full sm:max-w-sm">
                 <div className="mb-5">
                     <Input
-                        onChange={(e)=>setSearchedText(e.target.value)}
+                        onChange={(e) => setSearchedText(e.target.value)}
                         placeholder="Search events..."
                         className="h-10"
                     />

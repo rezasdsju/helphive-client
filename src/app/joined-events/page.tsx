@@ -1,7 +1,7 @@
 
 import getTokenFromServer from "@/lib/getTokenFromServer";
 import { IEvent } from "@/types/event.types";
-import JoinedEvents from "@/components/events/JoinedEvents";
+import JoinedEvents from "@/components/events/joined-events/JoinedEvents";
 
 
 const JoinedEventPage = async () => {
