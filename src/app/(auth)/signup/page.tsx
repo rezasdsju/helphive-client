@@ -75,7 +75,7 @@ const SignUpPage = () => {
 
 
     const handleGoogleSignIn = async () => {
-        const { error } = await authClient.signIn.social({
+        const { data, error } = await authClient.signIn.social({
             provider: 'google'
         })
         if (error) {
@@ -85,6 +85,13 @@ const SignUpPage = () => {
                 priority: 'high'
             })
             return
+        }
+        if (data) {
+            toast.add({
+                type: "success",
+                description: "You have successfully signed in.",
+                priority: 'high'
+            })
         }
     }
     return (
