@@ -1,6 +1,6 @@
 import { IEvent } from "@/types/event.types";
 import React from "react";
-import FilterUpcomingEvents from "../FilterUpcomingEvents";
+import FilterUpcomingEvents from "./FilterUpcomingEvents";
 import { Input } from "@/components/ui/input"
 
 
