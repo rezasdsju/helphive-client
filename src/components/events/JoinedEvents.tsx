@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
-import FilterJoinedEvents from "./FilterJoinedEvents";
+import FilterJoinedEvents from "./FilterManageAndJoinedEvents";
 import { IEvent } from "@/types/event.types";
 import JoinedEventCard from "./JoinedEventCard";
 import { useState } from "react";
