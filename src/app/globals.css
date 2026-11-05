@@ -127,3 +127,25 @@
     @apply font-sans;
     }
 }
+
+
+
+
+
+
+
+
+
+
+@keyframes carousel-pulse {
+  0%, 100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.15;
+  }
+}
+
+.animate-carousel-pulse {
+  animation: carousel-pulse 1.5s ease-in-out infinite;
+}

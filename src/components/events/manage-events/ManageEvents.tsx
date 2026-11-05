@@ -143,10 +143,11 @@ const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent)
                                         )}
                                     </CarouselContent>
                                     <CarouselPrevious
-                                        className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                        className="-left-4 cursor-pointer animate-carousel-pulse border border-border bg-gray-200 text-foreground hover:bg-accent dark:bg-gray-600"
                                     />
+
                                     <CarouselNext
-                                        className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                        className="-right-4 cursor-pointer animate-carousel-pulse border border-border bg-gray-200 text-foreground hover:bg-accent dark:bg-gray-600"
                                     />
                                 </Carousel>
 
@@ -171,10 +172,11 @@ const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent)
                                             )}
                                         </CarouselContent>
                                         <CarouselPrevious
-                                            className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                            className="-left-4 cursor-pointer animate-carousel-pulse border border-border bg-gray-200 text-foreground hover:bg-accent dark:bg-gray-600"
                                         />
+
                                         <CarouselNext
-                                            className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                            className="-right-4 cursor-pointer animate-carousel-pulse border border-border bg-gray-200 text-foreground hover:bg-accent dark:bg-gray-600"
                                         />
                                     </Carousel>
                                 </div> :
@@ -196,10 +198,11 @@ const ManageEvents = ({ createdAllEvents, createdUpcomingEvents }: IManageEvent)
                                             )}
                                         </CarouselContent>
                                         <CarouselPrevious
-                                            className="-left-4 bg-gray-200 dark:bg-gray-600 cursor-pointer text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                            className="-left-4 cursor-pointer animate-carousel-pulse border border-border bg-gray-200 text-foreground hover:bg-accent dark:bg-gray-600"
                                         />
+
                                         <CarouselNext
-                                            className="-right-4 bg-gray-200 dark:bg-gray-600 cursor-pointer  text-foreground border border-border hover:bg-accent hover:text-accent-foreground"
+                                            className="-right-4 cursor-pointer animate-carousel-pulse border border-border bg-gray-200 text-foreground hover:bg-accent dark:bg-gray-600"
                                         />
                                     </Carousel>
                                 </div>
