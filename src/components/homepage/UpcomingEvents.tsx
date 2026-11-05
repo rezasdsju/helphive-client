@@ -13,8 +13,8 @@ import {
 
 
 const UpcomingEvents = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/upcoming-events/limit-6/`,{
-        cache:'no-store'
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/upcoming-events/limit-6/`, {
+        cache: 'no-store'
     })
     if (!res.ok) {
         return (
@@ -65,8 +65,12 @@ const UpcomingEvents = async () => {
                     ))}
 
                 </CarouselContent>
-                <CarouselPrevious className={`left-1 cursor-pointer`} />
-                <CarouselNext className={`right-1 cursor-pointer`} />
+                <CarouselPrevious
+                    className="left-1 cursor-pointer animate-carousel-pulse"
+                />
+                <CarouselNext
+                    className="right-1 cursor-pointer animate-carousel-pulse"
+                />
             </Carousel>
         </div>
     );

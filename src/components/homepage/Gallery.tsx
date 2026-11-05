@@ -75,8 +75,12 @@ const Gallery = () => {
                         ))}
 
                     </CarouselContent>
-                    <CarouselPrevious className={`left-1 cursor-pointer`} />
-                    <CarouselNext className={`right-1 cursor-pointer`} />
+                    <CarouselPrevious
+                        className="left-1 cursor-pointer animate-carousel-pulse"
+                    />
+                    <CarouselNext
+                        className="right-1 cursor-pointer animate-carousel-pulse"
+                    />
                 </Carousel>
             </div>
         </div>
