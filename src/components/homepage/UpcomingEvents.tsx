@@ -13,7 +13,9 @@ import {
 
 
 const UpcomingEvents = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/upcoming-events/limit-6/`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/upcoming-events/limit-6/`,{
+        cache:'no-store'
+    })
     if (!res.ok) {
         return (
             <div className="flex flex-col items-center justify-center py-12 px-4">
