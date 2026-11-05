@@ -1,4 +1,4 @@
-import EventDetail from "@/components/events/EventDetail";
+import EventDetail from "@/components/events/upcoming-events/EventDetail";
 import { IEvent } from "@/types/event.types";
 import { notFound } from "next/navigation";
 
